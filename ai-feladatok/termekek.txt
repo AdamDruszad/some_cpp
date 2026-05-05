@@ -1,0 +1,4 @@
+Alma 200 50
+Korte 350 20
+Szilva 180 80
+Barack 400 15

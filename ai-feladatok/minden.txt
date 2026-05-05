@@ -1,0 +1,2091 @@
+#include <iostream>
+
+int g = 10;         //globális változó
+
+#define LENGTH 10
+
+using namespace std; //bárhova ahol std::"bármi" van ott elég lesz "bármi"-t írni
+
+int main(){
+    std::cout << "Hi!!!\n";
+    std::cout << "Halooo\n";
+
+    std::cout << "a" << " " << "bc" << std::endl;
+
+    char c = 'c';
+    int i = 1;
+    short int si = 10;
+    long int li = 100;
+    float f = 11.1;
+    double d = 11.1;
+    bool b = true;
+
+    std::string s = "xyz";
+
+    std::cout << "float " << sizeof(float) << std::endl;
+    std::cout << "double " << sizeof(double) << std::endl;
+
+    int i1 = 1, i2 = 2;
+    char x, y;
+    int k;
+    
+    std::cout << x << " " << y << " " << k << std::endl;
+
+    typedef int egesz;
+    egesz e = 1;
+
+    {
+        //blokk
+    }
+
+    std::cout << g << std::endl;
+
+    {
+        std::cout << g << std::endl;
+        int g = 11;     //lokális változó
+        std::cout << g << std::endl;
+    }
+
+    const int a = 10;
+
+    std::cout << "length" << std::endl;
+    std::cout << LENGTH << std::endl;
+    //std::cout << 10; << std::endl;
+
+    //Unáris operátorok:
+    // ++   --
+    /*
+        a = 1
+        a++ --> a = a + 1   -- ez később végzi el
+        ++a     -- ez előtte végzi el
+    */
+
+    //Bináris operátorok:
+    // +    -   *   /   %
+
+    //Tenáris operátorok:
+    // ?    :
+
+    int mod = 10 % 3;
+
+    std::cout << mod << std::endl;
+    std::cout << ++mod << std::endl;
+    std::cout << mod++ << std::endl;
+    std::cout << mod << std::endl;
+
+    //Példa:
+    /*
+        int num1 = 3;
+        int num2 = 3;
+        int num3 = 3;
+
+        num1 = num2++;
+        num2 = --num3;
+
+        std::cout << num1 << num2 << num3;
+    */
+    
+
+
+
+
+}
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    //összehasonlító operátorok
+    // ==    <=    >=    <    >    !=
+
+    //logikai operátorok
+    // &&    ||     ! -- és,vagy,negáció
+
+    bool b = 60 < 5;
+
+    cout << !b << " " << (b && true) << " " << ((60 < 5) || true) << endl;
+
+    //bitműveletek
+    //operátorai:   &   |  ^  <<  >>  -- bitenénti és, vagy, XOR, eltolás balra, jobbra
+
+    int A = 60;
+    int B = 13;
+
+    cout << (A & B) << " " << (A | B) << " " << A << 2 << endl;
+    cout << (A & B) << " " << (A | B) << " " << (A << 2) << endl;
+
+    //értékadó operátorok:
+    // =   +=  -=   *=   %=   &=   |=   ^=
+    // A += 10              A = A + 10
+    // B *= 2               B = B * 2
+
+    int tomb[5] = {1, 2, 3, 4, 5};
+    tomb[0] = 15;
+
+    cout << tomb[0] << " " << tomb[4] << endl;
+    cout << tomb[15] << endl;
+
+    char sztring[] = "Hello World!";
+    sztring[0] = 'h';
+
+    cout << sztring << endl;
+    //    sztring = 'hello';
+
+    //std::string
+    string s = "Hello World!";
+    s[0] = 'h';
+    cout << s << endl;
+    s = "hello,hello,hello,hello,hello,hello";
+
+    //típuskonverzió
+    //implicit          -- amikor el tudja végezni, akkor el is végzi
+
+    int n = 75;
+    double d = n;
+    /*
+        int   -   double
+        75  --->   75.0
+        75  <---   75.123
+     */
+
+    d = 75.123;
+    n = d;
+
+    //explicit
+
+    d = 75.123;
+    n = int(d);
+
+    cout << char(n) << " " << int('X') << endl;
+
+    //feltételes/elágazó utasítás
+
+    if(10 < 11) {
+        cout << "igaz" << endl;
+    }
+
+    if (21 < 10) {
+        cout << "kisebb" << endl;
+    } else {
+        cout << "nagyobb, vagy egyenlő" << endl;
+    }
+
+    if (21<10) {
+        cout << "kisebb" << endl;
+    } else if (21==10) {
+        cout << "egyenlő" << endl;
+    } else {
+        cout << "nagyobb" << endl;
+    }
+
+    if (0) {
+        cout << "hamis" << endl;
+    }
+
+    if (false) {
+        cout << "hamis" << endl;
+    }
+
+    if (1) {
+        cout << "igaz" << endl;
+    }
+
+    if (110) {
+        cout << "igaz" << endl;
+    }
+
+    if ( A = 2 ) {
+        cout << "igaz" << endl;
+    }
+
+    //ternáris operátor
+    //   ?:
+    // feltétel ? ha, igaz ez legyen : ha, hamis ez legyen;
+
+    bool bl = A==B ? true : false;
+    cout << bl << endl;
+
+    int x1 = 24;
+    int x2 = 25;
+
+    string eredmeny = x1 > x2 ? "nagyobb" : (x1 < x2 ? "kisebb" : "egyenlő");
+
+    cout << eredmeny << endl;
+
+    int nap = 6;
+
+    switch (nap) {
+        case 1:
+            cout << "hétfő" << endl;
+            break;
+        case 2:
+            cout << "kedd" << endl;
+            break;
+        case 3:
+            cout << "szerda" << endl;
+            break;
+        case 4:
+            cout << "csütörtök" << endl;
+            break;
+        case 5:
+            cout << "péntek" << endl;
+            break;
+        case 6:
+            cout << "szombat" << endl;
+            break;
+        case 7:
+            cout << "vasárnap" << endl;
+            break;
+        default:
+            cout << "nincs 7+ nap" << endl;
+    }
+
+    //ciklusszervező utasítás
+
+    //előltesztelő ciklus
+
+    int i = 1;
+    while (i <= 10){
+        cout << i << endl;
+        i++;
+    }
+
+    float f = 10.0;
+
+    while (f > 4.9) {
+        cout << f << "\n";
+        f -= 0.1f; // -- azért van az az f, hogy biztosan tudja a fordító, hogy float
+    }
+
+
+    cout << endl;
+
+    int a = 65;
+
+    while (a < 91) {
+        cout << char(a) << "\n";
+        a += 2;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+#include <iostream>
+
+using namespace std;
+int main() {
+
+    //hátultesztelő ciklus 1...n alkalommal fut le
+    //do-while
+
+    int i = 10;
+
+    do {
+        cout << i++ << endl;
+    }while (i < 10);
+
+    //meghatározott/előírt lépésszámú ciklus
+    //for
+    //for(ciklusváltozó megmondása; futási feltétel; ciklusváltozó értékváltozása){   }
+
+    for (int i = 0; i < 10; i++) {
+        cout << i << " ";
+    }
+    cout << endl;
+
+    for (char i = 'Z'; i >= 'A'; i--) {
+        cout << char(i) << " ";
+        cout << char(tolower(char(i))) << " ";
+    }
+    cout << endl;
+
+    //végtelen ciklusok
+
+    /*
+        while(true){
+            cout << "végtelen ciklus\n";
+        }
+    */
+
+    /*
+        for(;;){
+            cout << "végtelen ciklus\n";
+        }    
+    */
+
+    for(int i = 0;;){
+        cout << ++i << endl;
+        if(i == 5){
+            cout << endl;
+            break;
+        }
+    }
+
+    for(int i = 0; i < 10; i++){
+        if((i%2==0) || (i%3==0)){
+            continue;
+        }
+        cout << i << " "; 
+    }
+    cout << endl;
+
+    //foreach
+    //for(konténer_1_elemének típusa változónév : konténer neve){   }
+
+    int meret = 5;
+    int szamok[meret] = {1,2,3,4,5};
+
+    for(int szam : szamok){
+        cout << szam << " "; 
+    }
+    cout << endl;
+
+//  =====
+
+    for(int i = 0; i<meret; i++){
+        cout << szamok[i] << " ";
+    }
+    cout << endl;
+
+//  =====
+
+    // sizeof(szamok) ==> 20byte ==> (int)4byte * 5
+    //sizeof(int) ==> 4byte
+
+    for(int i = 0; i < sizeof(szamok)/sizeof(int); i++){
+        cout << szamok[i] << " ";
+    }
+    cout << endl;
+
+
+    int szamok2d[3][3] = {
+        {1, 2,  4},
+        {4, 5,  7},
+        {7, 8, 10}
+    };
+
+    /*
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                cout << "szamok2d[" << i << "][" << j << "]: " << szamok2d[i][j];
+            }
+        }
+        cout << endl;
+
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                cout << szamok2d[i][j] << " ";
+            }
+        cout << endl;
+        }
+    */
+    
+
+    //sorátlag
+    /*
+    int osszeg;
+    for(int i = 0; i < 3; i++){
+        osszeg = 0;
+        for(int j = 0; j < 3; j++){
+            osszeg += szamok2d[i][j];
+        }
+        cout << osszeg/3.0f << endl;
+    }
+    cout << endl;*/
+
+    int osszeg = 0;
+    for(int i = 0, j = 0; i < 3, j<3; i++, j++){
+        cout << szamok2d[i][j] << endl;
+        osszeg += szamok2d[i][j];
+        
+        
+    }
+    cout << osszeg/3.0f<< endl;
+    cout << endl;
+
+    int osszegj = 0;
+    for(int i = 0, j = 2; i < 3; i++, j--){
+        cout << szamok2d[i][j] << endl;
+        osszegj += szamok2d[i][j];
+        
+        
+    }
+    cout << osszegj/3.0f<< endl;
+    cout << endl;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int main(){
+    
+    struct{ // anonim struktúra
+        int szulEv;
+        string nev;
+    } szemely1, szemely2;
+
+    szemely1.szulEv = 2006;
+    szemely1.nev = "Dávid";
+
+    szemely2 = {2008, "Viki"};
+
+    cout << szemely1.nev << " " << szemely1.szulEv << endl;
+
+    szemely2 = szemely1;
+
+    szemely1.nev = "Dom";
+    
+    cout << szemely1.nev << " " << szemely2.nev << endl;
+
+    struct jarmu{
+        string marka;
+        string tipus;
+        short int evjarat;
+    };
+
+    jarmu j1 = {"Suzuki", "Swift", 2004};
+    jarmu j2 = {"Kia", "Ceed", 2020};
+
+    if(j1.evjarat > j2.evjarat){
+        cout << j1.marka << " " << j1.tipus << " fiatalabb" << endl; 
+    }
+    else if(j1.evjarat == j2.evjarat){
+        cout << "egyidősek\n";
+    }
+    else{
+        cout << j2.marka << " " << j2.tipus << " fiatalabb\n";
+    }
+
+
+    // Referencia --- Pointer:
+
+    //referencia:
+    //  típus& (név)
+
+    string st = "narancs";
+    string& gyumolcs = st;
+    // string& st        string & st         string &st  -----  ugyanaz
+
+    gyumolcs = "alma";
+
+    cout << st << " " << gyumolcs << endl;
+
+    //ez hibás, mert az "1"-nek nincs címe
+    //int& i = 1;
+
+    //memória cím lekérdezés:
+    //  &név
+    cout << &st << " " << &gyumolcs << endl;
+
+    cout << &szemely1 << " " << &szemely1.szulEv << " - " << &szemely1.nev << "            " << &szemely2 << endl;
+
+    //pointer:
+    //az értéke mindig memória cím!
+    //int* b        int * b         int *b ---ugyanaz
+
+    int a = 10;
+    int* b = &a;
+
+    cout << a << " " << &a << " ----- " << b << " " << &b << endl;
+
+    cout << sizeof(b) << endl;
+
+    // dereference/referencia feloldás:
+    //  *b
+    cout << *b << endl;
+
+    *b = 15;
+
+    cout << a << endl;
+
+    int z = 1;
+    int * zptr = &z;
+    int ** zpptr = &zptr;
+    int *** zppptr = &zpptr;
+
+    //nem lehet
+    //int ***yptr = &z;
+
+    cout << z  << " " << *zptr << " " << **zpptr << " " << ***zppptr << endl;
+
+
+    int t[5] = {1,2,3,4,5};    
+
+    //így memóriacímet ad
+    cout << t << endl;
+
+    int* tptr = t;
+
+    //így is
+    cout << t << " - " << &t[0] << " - " << tptr << endl;
+
+    cout << t[4] << " - " << (&t[0])[4] << " - " << tptr[4] << endl;
+
+    //kamu iterátoros bejárás
+    for(int* ptr = &t[0] ; ptr <= &t[4] ; ptr++){
+        cout << *ptr << " <- " <<  ptr << endl;
+    }
+    cout << "\n";
+
+    tptr = &t[4];
+
+    while(tptr >= t){
+        cout << *tptr << " <- " << tptr-- << endl;
+    }
+    cout << endl;
+
+    *(t+4) = 500; // *(&t[0] + 4) = 500  <====>  t[4] = 500
+
+    for(int i = 0; i < 5; i++){
+        *(t+i) = 5-i;
+        if(*(t+i) == 1){
+            *(t+i) = 5;
+            cout << *(t+i) << " ";
+        }
+        else if(*(t+i) == 5){
+            *(t+i) = 1;
+            cout << *(t+i) << " ";
+        }
+        else{
+            cout << *(t+i) << " ";
+        }
+    }
+    cout << endl;
+
+    //std::swap()
+
+    int tomb2[5] = {1, 3, 5, 7, 9};
+    int mtomb[5];
+
+    int * kezdo_ptr = tomb2;
+    int * veg_ptr = &tomb2[4];
+    int * cel_ptr = mtomb;
+    
+
+    cout << "----------\n";
+
+
+    int c = 1;
+    while(veg_ptr < 5){
+        veg_ptr += 1;
+    }
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+#include <iostream>
+
+using namespace std;
+
+void print(int a, int b);
+int multiply(int a, int b);
+void csere(int a, int b);
+void cserecim(int& a, int& b);
+void cserepointer(int* a, int* b);
+void szoroz(int& a, int b);
+void tombkiir(int t[5]);
+int minimum(int* t, int meret);
+int fa(int n);
+int fakt(int n);
+int fibo(int n);
+
+int main() {
+    cout << "----------------------------------5. GYAKORLAT----------------------------------\n";
+
+    //stack memória
+    int a = 1;
+    int b[5];
+
+    //heap memória
+    //pointer-változó név = new típus
+    //c malloc és free
+    //c++ new és delete
+
+    int* x = new int;
+    int * tp = new int[5];
+
+    int * p2 = new(nothrow) int;
+    if(!p2){
+        cout << "Nem sikerült a memória allokáció\n";
+    }else {
+        *p2 = 10;
+    }
+
+
+    float *f = new float(11.12);
+    *x = 5;
+
+    for(int i = 0; i < 5; i++){
+        tp[i] = i*2-1;
+        cout << tp[i] << " ";
+    }
+    cout << endl;
+
+    delete x;
+    delete[] tp; //tömböt []-lel kell felszabadítani
+    delete p2;
+    delete f;
+
+    //függvények
+    // void <==> eljárás
+    // int/float/stb. <==> függvény
+
+    int y = 2, z = 4;
+    
+    //cout << y << " " << z << endl;
+    print(y, z);
+    cout << multiply(y, z) << endl;
+    csere(y, z);
+    print(y, z);
+    cout << endl;
+    cserecim(y, z);
+    print(y, z);
+    cout << endl;
+    cserepointer(&y, &z);
+    print(y, z);
+    cout << endl;
+    szoroz(y, z);
+    print(y, z);
+
+    int t[5] = {1, 2, 3, 4, 5};
+
+    tombkiir(t);
+    cout << endl;
+    tombkiir(t);
+    cout << endl;
+    cout << minimum(t, 5) << endl;
+
+    cout << endl;
+    cout << fa(5);
+    cout << endl;
+    cout << fakt(5);
+    cout << endl;
+    cout << fibo(1);
+    cout << endl;
+    cout << fibo(2);
+    cout << endl;
+    cout << fibo(3);
+    cout << endl;
+    cout << fibo(4);
+
+}
+
+//eljárás
+void print(int a, int b){
+    cout << a << " " << b << endl;
+}
+
+//függvény
+int multiply(int a, int b){
+    return a * b;
+}
+
+//lokális
+void csere(int a, int b){
+    int temp = a;
+    a = b;
+    b = temp;
+    print(a, b);
+}
+
+//referencia szerinti paraméterátadás
+void cserecim(int& a, int& b){
+    int temp = a;
+    a = b;
+    b = temp;
+    print(a, b);
+}
+
+//pointeres paraméterátadás
+void cserepointer(int* a, int* b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void szoroz(int& a, int b){
+    a = a * b++;
+}
+
+void tombkiir(int t[5]){
+    for(int i = 0; i < 5; i++){
+        cout << t[i]++ << " ";
+    }
+}
+
+int minimum(int* t, int meret){
+    int min = t[0];
+    for(int i = 1; i < meret; i++){
+        if(t[i] < min){
+            min = t[i];
+        }
+    }
+    return min;
+}
+
+int fa(int n){
+    int m = 1;
+    for(int i = 1; i <= n; i++){
+        m = m * i;
+    }
+    return m;
+}
+
+int fakt(int n){
+    if(n > 1){
+        return n * fakt(n-1);
+    }else{
+        return 1;
+    }
+}
+
+int fibo(int n){
+    if(n <= 1){
+        return 1;
+    }else {
+        return fibo(n-1) + fibo(n-2);
+    }
+}
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+
+using namespace std;
+bool isPrime(int n);
+
+int main(){
+
+    std::vector<int> v; //{}
+
+    //push_back --- beszúrja a vektor végére az elemeket
+
+    for(int i = 0; i < 10; i++){
+        v.push_back(i*10);
+        cout << v[i] << " " << v.at(i) << " " << v.capacity() << " " << v.data() << endl;
+    }
+ 
+    //cout << v[50] << endl;  ---- ez túllép a vektor méretén
+    //cout << v.at(50) << endl; ---- ez ellenőrzi és hibát az ha nincs ilyen elem
+
+    //v[0] = 15;
+    //v.at(9) = 10;
+    //cout << v[0] << " " << v[9] << endl;
+    
+    //v[12] = 150;
+    //cout << v[12] << endl;
+    //cout << v.at(12) << endl;
+
+    for(int i : v){
+        cout << i << " ";
+    }
+    cout << endl;
+    
+    v.shrink_to_fit();
+    cout << v.capacity() << " " << v.size() << endl;
+
+    v.clear();
+
+    v = {2, 4, 3, 2, 5, 7, 3, 2, 5, 1};
+
+    //rendezzük növekvő sorrenden
+
+    sort(v.begin(), v.end());
+    cout << endl;
+
+    //lehetnek ezek a feladatok vizsgába/zh-ba:
+
+    //egyenlő a felső és alsó rendező algritmus
+    for (size_t i = 0; i < v.size(); i++) {
+        for (size_t j = 0; j < v.size() - 1; j++) {
+            if (v[j] > v[j + 1]) {
+                // Csere, ha az aktuális elem nagyobb a következőnél
+                int temp = v[j];
+                v[j] = v[j + 1];
+                v[j + 1] = temp;
+            }
+        }
+    }
+
+    for(int i : v){
+        cout << i << " ";
+    }
+    cout << endl;
+
+    //maximum kiválasztás pozicióval
+    int max = v[0];
+    int maxind = 0;
+    for(int i = 0; i < v.size(); i++){
+        if(v[i] > max){
+            max = v[i];
+            maxind = i;
+        }
+    }
+    cout << "A vektor maximuma: " << max << ", a poziciója: " << maxind << endl;
+
+    //megszámlálás tétele:
+    //hány xy feltételnek megfelelő elem van a konténerben
+    //feltétel érték = 2
+
+    int count = 0;
+
+    for(int i : v){
+        if(i == 2){
+            count++;
+        }
+    }
+    cout << "A konténerben " << count << " db 2-es van\n";
+
+    //szétválogtás
+    //válogassuk külön azokat az elemeket, amelyek megdfelelnek/nem felelnek meg egy adott feltételnek
+    //válogassuk szét az átlagtól kisebb é snagyobb elemeket
+
+    int atlag = 0;
+    for(int i : v){
+        atlag += i;
+    }
+    atlag /= v.size();
+
+    vector<int> kisebb;
+    vector<int> nagyobb;
+
+    for(int i : v){
+        if(i < atlag){
+            kisebb.push_back(i);
+        }
+        if(i > atlag){
+            nagyobb.push_back(i);
+        }
+    }
+    cout << "Átlag: " << atlag << endl;
+    cout << "Átlagtól kisebb:\n";
+    for(int i : kisebb){
+        cout << i << " ";
+    }
+    cout << endl;
+    for(int i : nagyobb){
+        cout << i << " ";
+    }
+    cout << endl;
+
+
+    // számoljuk meg a vektorban található primszámokat:
+
+    
+
+    int db = 0;
+    for(int i : v){
+        if(isPrime(i)){
+            db++;
+        }
+    }
+
+    cout << "Primszámok száma: " << db << endl;
+    for(int i : v){
+            cout << i << " ";
+        }
+        cout << endl;
+
+    //2D vektor
+
+    //zh-n lehet nagy méretű adatokat beolvasni és így is lehet
+    vector<vector<int>> v2d;
+
+    for(int i = 0; i < 5; i++){
+        vector<int> v1d;
+        for(int j = 0; j < 5; j++){
+            v1d.push_back(i+j*2);
+        }
+        v2d.push_back(v1d);
+    }
+
+    for(int i = 0; i < v2d.size(); i++){
+        for(int j = 0; j < v2d[i].size(); j++){
+            cout << v2d[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+
+}
+
+bool isPrime(int n) {
+    if (n <= 1) return false;
+    for (int i = 2; i <= sqrt(n); i++) {
+        if (n % i == 0) return false;
+    }
+    return true;
+}
+
+//medián még lehet zh-ba
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+
+// túlterhelés ---  azonos nevű, eltérő paraméterezésű fv.-k
+
+int test(){return 0;}
+
+int test(int a){return 0;}
+
+float test(double d){return 0;}
+
+int test(int a, double d){return 0;}
+
+//double test(int a){return 0;} --- nem lehet egyforma nevű, más visszatérés értékű fv.
+
+int absolute(int a){
+    if(a < 0){return -a;}
+    return a;
+}
+
+float absolute(float a){
+    if(a < 0.0f){return -a;}
+    return a;
+}
+
+
+vector<int>& operator<<(vector<int>& u, int i){
+    u.push_back(i);
+    return u;
+} 
+
+vector<int> operator+(vector<int> a, vector<int> b){
+    for(int i : b){
+        a.push_back(i);
+    }
+    return a;
+}
+
+int main(){
+
+    test();
+    test(1);
+    test(1.0);
+    test(1, 1.2);
+
+    cout << absolute(-1) << " " << absolute(-2.1f) << endl;
+
+
+    vector<int> v = {1,2,3};
+
+    v.push_back(4);
+
+    //v << 5;
+    // void hozzaad(vector<int> v, int a){
+    //          v.pushback(a);
+    //  }
+
+
+    v << 5;
+
+    for(int i : v){
+        cout << i << " ";
+    }
+    cout << endl;
+
+    v << 6 << 7 << 8;
+
+    for(int i : v){
+        cout << i << " ";
+    }
+    cout << endl;
+
+
+    vector<int> va={1,2,3,4};
+    vector<int> vb={5, 6,7,8};
+
+    vector<int> o = va+vb;
+}
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+
+// túlterhelés ---  azonos nevű, eltérő paraméterezésű fv.-k
+
+int test(){return 0;}
+
+int test(int a){return 0;}
+
+float test(double d){return 0;}
+
+int test(int a, double d){return 0;}
+
+//double test(int a){return 0;} --- nem lehet egyforma nevű, más visszatérés értékű fv.
+
+int absolute(int a){
+    if(a < 0){return -a;}
+    return a;
+}
+
+float absolute(float a){
+    if(a < 0.0f){return -a;}
+    return a;
+}
+
+
+vector<int>& operator<<(vector<int>& u, int i){
+    u.push_back(i);
+    return u;
+} 
+
+vector<int> operator+(vector<int> a, vector<int> b){
+    for(int i : b){
+        a.push_back(i);
+    }
+    return a;
+}
+
+
+void operator++(vector<int> a){
+    for(int i=0; i <a.size(); i++){
+        cout << a.at(i) << " ";
+    }
+    cout << endl;
+
+}
+
+struct szemely{
+    string nevv;
+    int kor;
+
+    void operator()(string n, int e){
+        nevv = n;
+        kor = e;
+    }
+};
+
+ostream& operator<<(ostream& os, const szemely& sz){
+    os << sz.nevv << " (" << sz.kor << ")";
+    return os;
+}
+
+istream& operator>>(istream& is, szemely& sz){
+    is >> sz.nevv >> sz.kor;
+    return is;
+}
+
+int main(){
+
+    test();
+    test(1);
+    test(1.0);
+    test(1, 1.2);
+
+    cout << absolute(-1) << " " << absolute(-2.1f) << endl;
+
+
+    vector<int> v = {1,2,3};
+
+    v.push_back(4);
+
+    //v << 5;
+    // void hozzaad(vector<int> v, int a){
+    //          v.pushback(a);
+    //  }
+
+
+    v << 5;
+
+    for(int i : v){
+        cout << i << " ";
+    }
+    cout << endl;
+
+    v << 6 << 7 << 8;
+
+    for(int i : v){
+        cout << i << " ";
+    }
+    cout << endl;
+
+
+    vector<int> va={1,2,3,4};
+    vector<int> vb={5, 6,7,8};
+
+    vector<int> o = va+vb;
+    ++o;
+
+    szemely sz1;
+    sz1.nevv = "Sanyi";
+    sz1.kor = 23;
+
+    szemely sz2;
+    sz2("Kitti", 33);
+
+    cout << sz1 << " " << sz2 << endl;
+
+    int x, y;
+    cout << "ADJ MEG EGY EGÉSZ SZÁMOT: \n";
+    cin >> x;
+
+    cout << "ADJ MEG EGY EGÉSZ SZÁMOT: \n";
+    cin >> y;
+
+    cout << "A két szám  összege: " << x+y << endl;
+
+    cout << "Adjon meg két egész számot!" << endl;
+
+    cin >> x >> y;
+    cout << "A két szám  összege: " << x+y << endl;
+
+    szemely sz3;
+
+    cout << "Adja meg a személy adatait: ";
+    cin >> sz3.nevv >> sz3.kor;
+
+    cout << sz3 << endl;
+
+    cin >> sz3;
+
+    cout << sz3 << endl; 
+}
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+struct Allat{
+    string nev;
+    int kor;
+    int suly;
+};
+
+
+
+int main(){
+    
+    /*
+        ofstream - output filestream -- létrehoz, ír
+        ifstream - input filestream -- olvas
+        fstream - filestream
+    */
+
+//-------------------------------------------------------------------------
+
+    /* 
+        1. létrehozás (logikai állomány) (outfile)
+        2. összerendelés (logikai-fizikai)
+        3. megnyitás
+    */
+    ofstream outfile("file1.txt");
+
+    /*
+        4. feldolgozás
+    */
+
+    outfile << "Sikeres írás\n";
+    outfile << "Második sor\n";
+    outfile << "Harmadik sor\n";
+    
+    /*
+        5. bezárás
+    */
+   outfile.close();
+
+   ifstream infile("file1.txt");
+
+   string text;
+
+   while(getline(infile, text)){
+    cout << text << endl;
+   }
+
+   infile.close();
+
+
+   vector<Allat> allatok;
+   int n;
+   cout << "Hány állatot akarsz felvenni?";
+   cin >> n;
+   Allat a;
+   for (int i = 0; i < n; i++){
+    cout << "Adja meg az állat adatait(név, kor, súly)\n";
+    cin >> a.nev >> a.kor >> a.suly;
+    allatok.push_back(a);
+   }
+
+   ofstream outa("allatok.txt");
+   for (Allat a : allatok){
+    outa << a.nev << " " << a.kor << " " << a.suly << endl;
+   }
+
+   outa.close();
+
+   ifstream ina("allatok.txt");
+
+   vector<Allat> beolvasott;
+
+   Allat olvas;
+
+   while(ina >> olvas.nev >> olvas.kor >> olvas.suly){
+    beolvasott.push_back(olvas);
+   }
+
+   float atlag = 0.0f;
+   for(Allat a : beolvasott){
+    atlag += float(a.suly);
+   }
+
+   atlag /= beolvasott.size();
+   for (Allat a : allatok){
+    cout << a.nev << " " << a.kor << " " << a.suly << endl;
+   }
+
+   cout << "Átlag: ";
+   cout << atlag << endl;
+
+   ina.close();
+
+
+    return 0;
+}
+#include <iostream>
+#include <list>
+#include <set>
+#include <vector>
+#include <map>
+#include <fstream>
+
+using namespace std;
+
+int main(){
+
+    list<int> l;
+
+    for(int i = 0; i < 10; i++){
+        l.push_front(i*2);
+        l.push_back(i);
+    }
+    
+    
+    //cout << l[0] << endl;
+    cout << l.front() << endl;
+    cout << l.back() << endl;
+
+    // 1.
+    for(int i : l){
+        cout << i << " " << &i << endl;
+    }
+
+    // 2.
+
+    /*
+        for(auto it = l.begin(); it!=l.end(); it++){
+        cout << *it << " ";
+        }
+        cout <<endl;
+    */
+
+//=================
+
+    list<int>::iterator lit;
+    for(lit = l.begin(); lit!=l.end(); lit++){
+        cout << *lit << " ";
+    }
+    cout <<endl;
+
+    l.pop_front();
+    l.pop_back();
+
+    lit = ++(++(++(++(l.begin()))));// std::advance, std::next --tekkel lehet szépen lépegetni
+    l.erase(lit);
+
+    for(auto it = l.begin(); it!=l.end(); it++){
+        cout << *it << " ";
+    }
+    cout <<endl;
+
+    l.sort();
+
+    for(auto it = l.begin(); it!=l.end(); it++){
+        *it = *it*2;
+        cout << *it << " ";
+    }
+    cout <<endl;
+
+    set<int> s;
+    s.insert(50);
+    s.insert(10);
+    s.insert(30);
+    s.insert(20);
+    s.insert(60);
+    s.insert(40);
+    s.insert(70);
+    s.insert(80);
+    s.insert(90);
+
+    //cout << s[0] << endl; --- hiba, nincs ilye
+
+    for(int i : s){
+        cout << i << " " << &i << endl;
+    }
+
+    set<int>::iterator sit;
+    
+    for(sit = s.begin(); sit != s.end(); sit++){
+        cout << *sit << " ";
+    }
+    cout << endl;
+
+    s.erase(50);
+    //cout << s.contains() << endl;
+    cout << *s.find(20) << endl;
+
+    vector<int> v = {1,1,2,3,6,11,4,155,12,344,16,6,11,3,25,724,22,867,432,11,55,5,5,55,4,44,2,2,22,3};
+
+    set<int> sv(v.begin(), v.end());
+
+    v.clear();
+
+    v.assign(sv.begin(), sv.end());
+
+    for(int i : v){
+        cout << i << " ";
+    }
+    cout << endl;
+
+    //map<key, value>
+    map<string, string> m;
+
+    m.insert({"PIsta", "István"});
+    m.insert({"Z", "Zoé"});
+    m["Zoli"] = "Zoltán";
+
+    m["Z"] = "Zalán";
+
+    for(pair<string, string> a : m){
+        cout << a.first << " " << a.second << endl;
+    }
+    cout << endl;
+
+    map<string, string>::iterator mit;
+
+    for(mit = m.begin(); mit != m.end(); mit++){
+        mit->second = "xyz";
+        //mit->first = "x"; -- nem lehet a kulcsot átírni
+        cout << mit->first << " " << mit->second << endl;
+    }
+
+    map<string, int> gyumolcsok;
+    
+    ifstream infile("C:\\Users\\student\\C++\\gyumikk.txt");
+    
+    if (!infile) {
+    cerr << "Hiba: A gyumik.txt nem talalhato a program mellett!" << endl;
+    }
+
+    string gyumolcs;
+    while(infile >> gyumolcs){
+        gyumolcsok[gyumolcs]++;
+    }
+
+    infile.close();
+
+    for(auto a : gyumolcsok) {
+    cout << a.first << ": " << a.second << " db" << endl;
+    }
+
+
+
+}
+#include <iostream>
+#include <list>
+
+using namespace std;
+
+int main(){
+
+    list<int> l;
+
+    for(int i = 0; i < 10; i++){
+        l.push_front(i*2);
+        l.push_back(i);
+    }
+    
+    
+    //cout << l[0] << endl;
+    cout << l.front() << endl;
+    cout << l.back() << endl;
+
+    // 1.
+    for(int i : l){
+        cout << i << " " << &i << endl;
+    }
+
+    // 2.
+
+    /*
+        for(auto it = l.begin(); it!=l.end(); it++){
+        cout << *it << " ";
+        }
+        cout <<endl;
+    */
+
+//=================
+
+    list<int>::iterator lit;
+    for(lit = l.begin(); lit!=l.end(); lit++){
+        cout << *lit << " ";
+    }
+    cout <<endl;
+
+    l.pop_front();
+    l.pop_back();
+
+    lit = ++(++(++(++(l.begin()))));// std::advance, std::next --tekkel lehet szépen lépegetni
+    l.erase(lit);
+
+    for(auto it = l.begin(); it!=l.end(); it++){
+        cout << *it << " ";
+    }
+    cout <<endl;
+
+    l.sort();
+
+    for(auto it = l.begin(); it!=l.end(); it++){
+        *it = *it*2;
+        cout << *it << " ";
+    }
+    cout <<endl;
+
+}
+#include <iostream>
+#include <vector>
+
+int fibo1(int n);
+int fibof(int n);
+int bigfibo(int a, int b);
+std::vector<float> egydim(int arr[4][4]);
+void beKer();
+
+class Doboz{
+        public:
+        Doboz(){}
+        int lenght = 0;
+        int width = 0;
+        int height = 0;
+        Doboz(int length, int width, int height): lenght(lenght), width(width), height(height){}
+    };
+
+int main(){
+    std::cout << bigfibo(1, 10) <<std::endl;
+    //--------------------------
+    int twoDimArr[4][4] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12},
+        {13, 14, 15, 16}
+    };
+    egydim(twoDimArr);
+    for(float i : egydim(twoDimArr)){
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+    //------------------
+    beKer();
+    //----------------------------
+    Doboz dobozok[5];
+    for(int i = 0; i < 5; i++){
+        Doboz d(i+1, i+4, i+2);
+        dobozok[i] = d;
+    }
+    int magassag = 0;
+    for(Doboz i : dobozok){
+        magassag += i.height;
+    }
+    std::cout << "Ilyen magas: " << magassag << std::endl;
+
+}
+
+int fibo1(int n){
+    if(n == 0){
+        return 0;
+    }
+    if(n == 1){
+        return 1;
+    }
+    return fibo1(n-1)+fibo1(n-2);
+}
+
+int fibof(int n){
+    std::vector<int> t;
+    t.reserve(n);
+
+    int n1 = 0;
+    int n2 = 1;
+    for(int i = 0; i < n; i++){
+        std::cout << n1 << ' ';
+
+        int kov = n1 + n2;
+        n1 = n2;
+        n2 = kov;
+    }
+    return 0;
+}
+
+int bigfibo(int a, int b) {
+    if (b < 0) return -1;
+
+    int legnagyobb_fibo = -1;
+
+    int elozo = 0;
+    int jelenlegi = 1;
+    
+
+    if (a <= 0 && b >= 0) {
+        legnagyobb_fibo = 0;
+    }
+
+    while (jelenlegi <= b) {
+        if (jelenlegi >= a) {
+            legnagyobb_fibo = jelenlegi; 
+        }
+        
+        int kovetkezo = elozo + jelenlegi;
+        elozo = jelenlegi;
+        jelenlegi = kovetkezo;
+    }
+
+    return legnagyobb_fibo;
+}
+
+std::vector<float> egydim(int arr[4][4]){
+    std::vector<float> avgArr;
+    for(int i = 0; i < 4; i++){
+        float avg = 0;
+        for(int j = 0; j < 4; j++){
+            avg += arr[i][j];
+        }
+        avg = avg/4;
+        avgArr.push_back(avg);
+    }
+    return avgArr;
+}
+
+void beKer(){
+    int n;
+    std::cout << "Hány szót szeretnél beírni: ";
+    std::cin >> n;
+    if(n <= 0){
+        std::cout << "Hiba";
+        return;
+    }
+
+    std::vector<std::string> sztring;
+    std::string ch;
+    for(int i = 0; i < n; i++){
+        std::cout << "Add meg a szót: ";
+        std::cin >> ch;
+        sztring.push_back(ch);
+    }
+    std::string legkisebb = sztring[0];
+    std::string legnagyobb;
+    for(std::string i : sztring){
+        if(i.length()>legnagyobb.length()){
+            legnagyobb = i;
+        }
+        if(i.length()<legkisebb.length()){
+            legkisebb = i;
+        } 
+    }
+    std::cout << "Legkisebb: " << legkisebb << " Legnagyobb: " << legnagyobb << std::endl;
+}
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <vector>
+#include <array>
+#include <algorithm>
+#include <sstream>
+
+int ketSzamKoztFibo(int &a, int b);
+std::array<double, 4> egydim(int t[4][4]);
+void karakter(char &a, char t[10], char b);
+void szavak();
+
+class Doboz{
+    public:
+    Doboz(){}
+    int szelesseg;
+    int magassag;
+    int melyseg;
+    Doboz(int szelesseg, int magassag, int melyseg): szelesseg(szelesseg), magassag(magassag), melyseg(melyseg){}
+};
+
+int main(){
+    /*
+    int a = 1;
+    ketSzamKoztFibo(a, 10);
+    std::cout << std::endl;
+    */
+
+    int temp[4][4] = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}, {13,14,15,16}};
+
+    for(double x : egydim(temp)){
+        std::cout << x << " ";
+    }
+    std::cout << std::endl;
+
+    szavak();
+
+    std::cout << std::endl;
+
+    Doboz dt[5] = {{1,1,1}, {2,2,2}, {3,3,3}, {4,4,4}, {5,5,5}};
+
+    int magassag = 0;
+    for(int i = 0; i < 5; i++){
+        magassag += dt[i].magassag;
+    }
+
+    std::cout << "A magassaga, ha egymasra pakoljuk oket: "<< magassag << "."<< std::endl;
+
+    std::ifstream infile("randomok.txt");
+    std::ofstream outfile("kisebb1.txt");
+
+    std::vector<std::vector<int>> adatok;
+    std::string sor;
+    while(getline(infile, sor)){
+        std::stringstream ss(sor);
+        std::vector<int> egysor;
+        int szam;
+
+        while(ss >> szam){
+            egysor.push_back(szam);
+        }
+        adatok.push_back(egysor);
+    }
+
+    for(int i = 0; i < adatok.size(); i++){
+        int osszeg = 0;
+
+        for(int j = 0; j < adatok[i].size(); j++){
+            osszeg += adatok[i][j];
+        }
+    
+        double atlag = (double) osszeg / adatok[i].size();
+        
+        if(atlag < 37){
+            outfile << "Igen" << std::endl;
+        } else {
+            outfile << "Nem" << std::endl;
+        }
+    }
+    infile.close();
+    outfile.close();
+    
+
+}
+
+int ketSzamKoztFibo(int a, int b){
+    int legnagyobbFibo = -1;
+    int elozo = 0;
+    int jelenlegi = 1;
+
+    while(jelenlegi <= b){
+        if(jelenlegi >= a){
+            legnagyobbFibo = jelenlegi;
+        }
+
+        int kov = elozo + jelenlegi;
+        elozo = jelenlegi;
+        jelenlegi = kov;
+    }
+
+    return legnagyobbFibo;
+}
+/*
+
+    
+int* egydim(int t[4][4]){
+    int* ujtomb = new int[4];
+    for(int i = 0; i < 4; i++){
+        int atlag = 0;
+        for(int j = 0; j < 4; j++){
+            atlag += t[i][j];
+        }
+        atlag /= 4;
+        ujtomb[i] = atlag;
+    }
+}
+
+*/
+
+std::array<double, 4> egydim(int t[4][4]){
+    std::array<double, 4> ujtomb;
+    for(int i = 0; i < 4; i++){
+        int atlag = 0;
+        for(int j = 0; j < 4; j++){
+            atlag += t[i][j];
+        }
+        ujtomb[i] = (double)atlag/4.0;
+    }
+    return ujtomb;
+}
+
+void karakter(char &a, char t[10], char b){
+    a = t[b];
+}
+
+void szavak(){
+    int n;
+    std::cout << "Hany szo lesz? ";
+    std::cin >> n;
+    std::cout << "Ird ide a szot: ";
+    std::string szavak[n];
+
+    for(int i = 0; i < n; i++){
+        std::cin >> szavak[i];
+    }
+
+    std::string rovid = szavak[0];
+    std::string hosszu = szavak[0];
+
+    for(int i = 0; i < n; i++){
+        if(szavak[i].length() > hosszu.length()){
+            hosszu = szavak[i];
+        }
+        if(szavak[i].length() < rovid.length()){
+            rovid = szavak[i];
+        }
+    }
+    std::cout << "Rövid: " << rovid << " hosszú: " << hosszu << std::endl;
+}
+
+//fibonacci, palindrom, rekurziv, primszam, lkkt, lnko stb
+// szambeolvasas eltarolva, szöveges beolvasás(szavak/sorok átlagos hossza, hany szo van benne, stb kreativ dolgok)
+//lehetnek szokozok azokat kiszedni és még sok más
+//structuraba eltarolas ilyen sorokbol:   réka 10 20 20
+//                                        tamás 32 12 10
+//esetleg ezeknél adatok alalpján megfelel e az egyik adat alapjan valaminek, 
+// rakjuk sorba azokat
+
+
+
+//programozasi tetelek,     szit.hu
+//lehet mindengéle átlag, medián, oszlopok, sorok, kerersztbe stb
+//esetleges beolvasott szavak hossza, majd azokbol melyik ami hosszabb, rovidebb annal, és még egy csomó mód, amit ki lehet talalni,  
+#include <iostream>
+#include <vector>
+#include <string>
+#include <fstream>
+#include <sstream>
+
+using namespace std;
+
+int fiboszamokkozt(int a, int b);
+vector<float> egydimenzioba(int Arr[4][4]);
+void bazaba(char &a, char tomb[10], char b);
+void kicsiNagy();
+
+class Doboz{
+    public:
+    Doboz(){}
+    int szelesseg;
+    int magassag;
+    int melyseg;
+    Doboz(int szelesseg, int magassag, int melyseg): szelesseg(szelesseg), magassag(magassag), melyseg(melyseg){}
+};
+
+int main(){
+    cout << fiboszamokkozt(0, 0);
+    cout << endl;
+    //----------------------------------
+    int twoDimArr[4][4] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12},
+        {13, 14, 15, 16}
+    };
+    for(float i : egydimenzioba(twoDimArr)){
+        cout << i << " ";
+    }
+    cout << endl;
+    //-----------------------------------
+    char a = '1';
+    char b = '5';
+    char tomb[10] = {'s','d', 'h', 'e', 'q', 'z','l','a','b','x'};
+    bazaba(a, tomb, b);
+    cout << a << endl;
+    //--------------------------------
+    kicsiNagy();
+    //------------------------------------
+    Doboz dobozok[5];
+    for(int i = 0; i <5 ; i++){
+        Doboz d(i+1, i+3, i+4);
+        dobozok[i] = d;
+    }
+    int magassag = 0;
+    for(Doboz i : dobozok){
+        magassag += i.magassag;
+    }
+    cout << "Ha egymásra pakoljuk őket, akkor ilyen magas lesz: " << magassag;
+    //--------------------------------------------------------------------------
+    ifstream infile("randomok.txt");
+    string line;
+    vector<string> lines;
+
+    while(getline(infile, line)){
+        lines.push_back(line);
+    }
+
+    infile.close();
+    
+    ofstream outfile("kisebb.txt");
+
+    for(string i : lines){
+        int avg = 0;
+        istringstream iss(i);
+        int szam;
+        int c = 0;
+        while(iss >> szam){
+            c++;
+            avg += szam;
+        }
+        avg /= c;
+        if(avg<37){
+            outfile << "Igen\n";
+        }else{
+            outfile << "Nem\n";
+        }
+    }
+}
+
+int fiboszamokkozt(int a, int b){
+    if(b <= 0){ return 0; }
+
+    int legnagyobbfibo = 0;
+
+    int elozo = 0;
+    int jelenlegi = 1;
+
+    while(jelenlegi <= b){
+        if(jelenlegi >= a){
+            legnagyobbfibo = jelenlegi;
+        }
+
+        int kovetkezo = jelenlegi + elozo;
+        elozo = jelenlegi;
+        jelenlegi = kovetkezo;
+    }
+    return legnagyobbfibo;
+}
+
+vector<float> egydimenzioba(int Arr[4][4]){
+    vector<float> avgArr;
+    for(int i = 0; i < 4; i++){
+        float avg = 0;
+        for(int j = 0; j < 4; j++){
+            avg += Arr[i][j];
+        }
+        avgArr.push_back(avg/4);
+    }
+    return avgArr;
+}
+
+void bazaba(char &a, char tomb[10], char b){
+    a = tomb[b-'0'-1];
+}
+
+void kicsiNagy(){
+    int n;
+    cout << "Hány szó lesz? ";
+    cin >> n;
+
+    if(n <= 0){
+        std::cout << "Hiba";
+        return;
+    }
+
+    vector<string> tomb;
+    string szo;
+    for(int i = 0; i < n; i++){
+        cout << "Add meg a szót: ";
+        cin >> szo;
+        tomb.push_back(szo);
+    }
+    string legkisebb = tomb[0];
+    string legnagyobbb = tomb[0];
+    for(string i : tomb){
+        if(i.length() > legnagyobbb.length()){
+            legnagyobbb = i;
+        }
+        if(i.length()< legkisebb.length()){
+            legkisebb = i;
+        }
+    }
+    cout << "Legkisebb " << legkisebb << endl;
+    cout << "Legnagyobb " << legnagyobbb << endl;
+}
+#include <iostream>
+
+int g = 10;         //globális változó
+
+#define LENGTH 10
+
+using namespace std; //bárhova ahol std::"bármi" van ott elég lesz "bármi"-t írni
+
+int main(){
+    std::cout << "Hi!!!\n";
+    std::cout << "Halooo\n";
+
+    std::cout << "a" << " " << "bc" << std::endl;
+
+    char c = 'c';
+    int i = 1;
+    short int si = 10;
+    long int li = 100;
+    float f = 11.1;
+    double d = 11.1;
+    bool b = true;
+
+    std::string s = "xyz";
+
+    std::cout << "float " << sizeof(float) << std::endl;
+    std::cout << "double " << sizeof(double) << std::endl;
+
+    int i1 = 1, i2 = 2;
+    char x, y;
+    int k;
+    
+    std::cout << x << " " << y << " " << k << std::endl;
+
+    typedef int egesz;
+    egesz e = 1;
+
+    {
+        //blokk
+    }
+
+    std::cout << g << std::endl;
+
+    {
+        std::cout << g << std::endl;
+        int g = 11;     //lokális változó
+        std::cout << g << std::endl;
+    }
+
+    const int a = 10;
+
+    std::cout << "length" << std::endl;
+    std::cout << LENGTH << std::endl;
+    //std::cout << 10; << std::endl;
+
+    //Unáris operátorok:
+    // ++   --
+    /*
+        a = 1
+        a++ --> a = a + 1   -- ez később végzi el
+        ++a     -- ez előtte végzi el
+    */
+
+    //Bináris operátorok:
+    // +    -   *   /   %
+
+    //Tenáris operátorok:
+    // ?    :
+
+    int mod = 10 % 3;
+
+    std::cout << mod << std::endl;
+    std::cout << ++mod << std::endl;
+    std::cout << mod++ << std::endl;
+    std::cout << mod << std::endl;
+
+    //Példa:
+    /*
+        int num1 = 3;
+        int num2 = 3;
+        int num3 = 3;
+
+        num1 = num2++;
+        num2 = --num3;
+
+        std::cout << num1 << num2 << num3;
+    */
+    
+
+
+
+
+}
+
+randomok.txt:
+
+3 67 23 56 78
+43 65 11 1 2
+3 5 7 9 50
+98 12 87 23 56
+37 37 37 37 37
+
+
+
+
+
+
+
+
+
+
+
+
+You will be my personal professional c++ teacher/mentor, here's my all code, and more exercise write in minden.txt,
+and all of the files, the exercises wrote on hungarian language, like comments, example: // lesz benne lnko, u have
+to write me new exercises that could be possibly in my c++ test, be honnest, help me if I didn't know the exercise
+too good, first read all of the files, then write me new exercises, tests, like the k16.docx

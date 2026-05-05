@@ -1,0 +1,89 @@
+26
+
+
+Map - szószámlálás
+
+Szógyakoriság elemzése
+
+
+Fájl
+
+
+Hozz létre egy "szoveg.txt" fájlt néhány mondattal (legalább 20 szóval, legyenek ismétlődő
+
+szavak)!
+
+
+Írj szoszamlalas(string fajlnev) függvényt, amely:
+
+1. Megszámolja minden szó előfordulásait (map)
+
+2. Kiírja a top 3 leggyakoribb szót és előfordulásukat
+
+3. Kiírja hány különböző szó szerepel
+
+4. Kiírja az átlagos szóhosszt
+
+
+Tipp (tétel)
+
+map szavak; while(f>>szo) szavak[szo]++; Rendezéshez: vector> lista(szavak.begin(),
+
+szavak.end());
+
+=========================
+
+#include <iostream>
+#include <fstream>
+#include <map>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+void szoszamlalas(string fajlnev) {
+    ifstream f(fajlnev);
+    map<string, int> szavak;
+    string szo;
+    int ossz_hossz = 0;
+    int ossz_db = 0;
+
+    while (f >> szo) {
+        szavak[szo]++;
+        ossz_hossz += szo.size();
+        ossz_db++;
+    }
+
+    // 1. Top 3 - vector-ba rendezve
+    vector<pair<string, int>> lista(szavak.begin(), szavak.end());
+    sort(lista.begin(), lista.end(), [](auto& a, auto& b) {
+        return a.second > b.second;    // gyakoriság szerint csökkenő
+    });
+
+    cout << "=== Top 3 leggyakoribb szó ===" << endl;
+    for (int i = 0; i < 3 && i < lista.size(); i++) {
+        cout << i+1 << ". \"" << lista[i].first
+             << "\" - " << lista[i].second << "x" << endl;
+    }
+
+    // 2. Különböző szavak
+    cout << endl << "=== Különböző szavak ===" << endl;
+    cout << szavak.size() << " db" << endl;
+
+    // 3. Átlagos szóhossz
+    cout << endl << "=== Átlagos szóhossz ===" << endl;
+    cout << (double)ossz_hossz / ossz_db << " karakter" << endl;
+}
+
+int main() {
+    // Fájl létrehozása
+    ofstream keszit("szoveg.txt");
+    keszit << "a macska es a kutya jatszott a kertben\n";
+    keszit << "a macska felment a fara de a kutya nem tudott\n";
+    keszit << "a gyerek nezte a macskát es a kutyat a kertben\n";
+    keszit.close();
+
+    szoszamlalas("szoveg.txt");
+
+    return 0;
+}

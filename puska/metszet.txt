@@ -1,0 +1,44 @@
+09
+
+Metszet - közos értékek
+Két vektor közös elemei
+
+Közepes
+
+Adott két vektor (egy osztály matematika ill. fizika versenyének résztvevői, diák_ID számok):
+A = {101, 203, 145, 78, 312, 99}
+B = {78, 145, 500, 312, 201}
+
+Írj függvényt metszet(vector a, vector b) névvel, amely visszaadja mindkét versenyen részt vett diákok
+id-jét!
+
+Tipp (tétel)
+Metszet: külső ciklus a-n, belső b-n. Ha találunk egyezőt (és nem volt még benne), push_back.
+
+==========MEGOLDAS-09==========
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<int> metszet(vector<int> a, vector<int> b){
+    vector<int> uj;
+    for(int x : a){
+        for(int i : b){
+            if(x == i){
+                uj.push_back(i);
+            }
+        }
+    }
+    return uj;
+}
+
+int main(){
+    vector<int> a = {101, 203, 145, 78, 312, 99};
+    vector<int> b = {78, 145, 500, 312, 201};
+    vector<int> uj = metszet(a, b);
+    for(int x : uj){
+        cout << x << " ";
+    }
+}

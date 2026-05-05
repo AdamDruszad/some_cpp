@@ -1,0 +1,1863 @@
+03
+
+Eldöntés - tantárgyak
+Van-e az adathalmazban ilyen elem
+
+Adott egy string vektor diákok jegyeivel (tantárgy neve):
+{"Matek", "Fizika", "Torma", "Kémia", "Biológia", "Torma"}
+
+Írj függvényt van_ketjegy(vector v, string ker) névvel, amely visszaadja, hogy szerepel-e a keresett
+tantárgy a listában!
+Teszteld: keresd a "Torma" és a "Zene" tantárgyakat, írd ki az eredményt!
+
+Tipp (tétel)
+Eldöntés tétel: igaz/hamis visszatérés. Ha megvan, azonnal return true, végén return false.
+==========MEGOLDAS-03==========
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+void van_ketjegy(vector<string> v, string ket){
+    int db = 0;
+    for(string x : v){
+        if(ket == x){
+            db += 1;
+        }
+    }
+    string szo;
+    if(db>=2){
+        cout << "Igen";
+    }else{
+        cout << "Nem";
+    }
+}
+
+int main(){
+    vector<string> v = {"Matek", "Fizika", "Torma", "Kémia", "Biológia", "Torma"};
+    van_ketjegy(v, "Matek");
+}
+
+04
+
+Kiválasztás - verseny
+Elem pozíciójának megkeresése (garantált bennelét)
+
+Adott egy vektor versenyzők pontszámával:
+{45, 78, 92, 61, 88, 73, 92}
+
+Írj függvényt hanyadik(vector v, int ker) névvel, amely visszaadja, hogy a keresett pontszám ELŐSZÖR
+melyik indexen szerepel! (Feltételezzük, hogy biztosan benne van.)
+Keresd a 92-es értéket!
+
+Tipp (tétel)
+Kiválasztás tétel: while ciklus amíg nem egyenlő, i++. Nem ellenőrizzük a tömb végét.
+
+==========MEGOLDAS-04==========
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int hanyadik(vector<int> v, int kert){
+    int k;
+    for(int i = 0; i < v.size()-1; i++){
+        if(v[i]==kert){
+            k = i;
+        }
+    }
+    return k;
+
+}
+
+int main(){
+    vector<int> v = {45, 78, 92, 61, 88, 73, 92};
+    int a = hanyadik(v, 92);
+    cout << a;
+}
+
+07
+
+Kiválogatás - jeles diákok
+Feltételnek megfelelők új vektorba
+
+Alap
+
+Adott egy vektor diákok jegyeivel (1-5):
+{3,5, 2, 5, 4, 1, 5, 3,5}
+
+Írj függvényt jeles_indexek(vector v) névvel, amely visszaad egy vektort, amely azoknak a diákoknak az
+INDEXÉT tartalmazza, akik jelest (5-öst) kaptak!
+
+Tipp (tétel)
+Kiválogatás tétel: ha a feltétel igaz, push_back az indexszel (i), nem az értékkel.
+
+==========MEGOLDAS-07==========
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<int> jeles_indexek(vector<int> v){
+    vector<int> uj;
+    for(int x = 0; x < v.size()-1; x++){
+        if(v[x]==5){
+            uj.push_back(x);
+        }
+    }
+    return uj;
+}
+
+int main(){
+    vector<int> v = {3,5, 2, 5, 4, 1, 5, 3,5};
+    vector<int> jeles = jeles_indexek(v);
+    for(int i : jeles){
+        cout << i <<" ";
+    }
+}
+
+05
+
+Lineáris keresés - árak
+Keresés, ha lehet hogy nincs benne
+
+Alap
+
+Adott egy vektor termékek áraival:
+{299,1499, 750, 89, 2999, 450, 1499}
+
+Írj függvényt lin_keres(vector v, int ker) névvel, amely visszaadja az elem ELSŐ előfordulásának indexét,
+vagy -1-et ha nincs benne!
+Teszteld: keresd a 750-et és a 100-at!
+
+Tipp (tétel)
+Lineáris keresés: for ciklus indexszel, if egyenlő > return i. Ciklus után return -1.
+
+==========MEGOLDAS-05==========
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int lin_keres(vector<int> v, int ker){
+    int a = -1;
+    for(int i = 0; i < v.size()-1; i++){
+        if(v[i] == ker){
+            a = i;
+        }
+    }
+    return a;
+}
+
+int main(){
+    vector<int> v = {299,1499, 750, 89, 2999, 450, 1499};
+    int a = lin_keres(v, 750);
+    cout << a;
+}
+
+06
+
+Másolás - Celsius > Kelvin
+Elemek másolása átalakítással
+
+Alap
+
+Adott egy vektor Celsius fokokban:
+
+
+Írj függvényt celsius_kelvin(vector v) névvel, amely visszaad egy új vektort, ahol minden elem Kelvinbe
+van átszámítva! (Kelvin = Celsius + 273.15)
+Írasd ki mindkét vektort egymás mellé!
+
+Tipp (tétel)
+Másolás tétel: for ciklus, minden elemre: b.push_back(a[i] +273.15)
+
+==========MEGOLDAS-06==========
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<double> celsius_kelvin(vector<double> v){
+    vector<double> uj;
+    for(double x : v){
+        uj.push_back(x + 273.15);
+    }
+    return uj;
+}
+
+int main(){
+    vector<double> v = {0.0, 20.5, -10.0, 37.0, 100.0};
+    for(auto x : v){
+        cout << x << " ";
+    }
+    cout << endl;
+    vector<double> k = celsius_kelvin(v);
+    for(auto x : k){
+        cout << x << " ";
+    }
+}
+
+02
+
+Megszámlálás - hőmérséklet
+Feltételnek megfelelő elemek megszámlálása
+
+Adott egy vektor, amely egy hét napi hőmérsékletét tartalmazza (℃):
+{-3,5,-1, 8, 12,-5, 2}
+
+Írj függvényt fagypont_napok(vector v) névvel, amely megszámolja hány napon volt fagypont alatt a
+hőmérséklet (értéke < 0)!
+
+Tipp (tétel)
+Megszámlálás tétel: számlálót indul 0-ból, minden igaz feltételű elemnél növeli.
+
+==========MEGOLDAS-02==========
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int fagypont_napok(vector<int> v){
+    int napok = 0;
+    for(int x : v){
+        if(x < 0){
+            napok += 1;
+        }
+    }
+    return napok;
+}
+
+int main(){
+    vector<int> v = {-3,5,-1, 8, 12,-5, 2};
+    int a = fagypont_napok(v);
+    cout << a;
+}
+
+09
+
+Metszet - közos értékek
+Két vektor közös elemei
+
+Közepes
+
+Adott két vektor (egy osztály matematika ill. fizika versenyének résztvevői, diák_ID számok):
+A = {101, 203, 145, 78, 312, 99}
+B = {78, 145, 500, 312, 201}
+
+Írj függvényt metszet(vector a, vector b) névvel, amely visszaadja mindkét versenyen részt vett diákok
+id-jét!
+
+Tipp (tétel)
+Metszet: külső ciklus a-n, belső b-n. Ha találunk egyezőt (és nem volt még benne), push_back.
+
+==========MEGOLDAS-09==========
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<int> metszet(vector<int> a, vector<int> b){
+    vector<int> uj;
+    for(int x : a){
+        for(int i : b){
+            if(x == i){
+                uj.push_back(i);
+            }
+        }
+    }
+    return uj;
+}
+
+int main(){
+    vector<int> a = {101, 203, 145, 78, 312, 99};
+    vector<int> b = {78, 145, 500, 312, 201};
+    vector<int> uj = metszet(a, b);
+    for(int x : uj){
+        cout << x << " ";
+    }
+}
+
+01
+
+Összegzés - számlák
+Egy vektor összegzése feltétel nélkül
+
+Adott egy vektor, amely egy bolt napi bevételeit tartalmazza (egész számokban, forintban):
+{1200, 850, 3400, 920, 450, 1780, 2200}
+
+Írj függvényt napi_osszeg(vector v) névvel, amely visszaadja az összes napi bevétel összegét!
+A main()-ban írasd ki az eredményt!
+
+Tipp (tétel)
+Összegzés tétel: indíts egy 0-ás számlálóval, adj hozzá minden elemet.
+
+==========MEGOLDAS-01==========
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int napi_osszeg(vector<int> v){
+    int ossz = 0;
+    for(int x : v){
+        ossz += x;
+    }
+    return ossz;
+}
+
+int main(){
+    vector<int> v = {1200, 850, 3400, 920, 450, 1780, 2200};
+    int a = napi_osszeg(v);
+    cout << a;
+}
+
+08
+
+Szétválogatás - páros/páratlan
+Két vektorba szétosztás
+
+Alap
+
+Adott egy vektor egész számokkal:
+{7,4, 11, 2, 9, 6, 13, 8, 3}
+
+Írj eljárást szetvalogat(vector v) névvel, amely szétválogatja a számokat páros és páratlan vektorokba,
+majd mindkét vektort kiírja!
+
+Tipp (tétel)
+Szétválogatás: ha x%2 == 0 > páros vektorba push_back, különben páratlan vektorba.
+
+
+==========MEGOLDAS-08==========
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void szetvalogat(vector<int> v){
+    vector<int> paros;
+    vector<int> paratlan;
+    for(int x : v){
+        if(x % 2 == 0){
+            paros.push_back(x);
+        }else{
+            paratlan.push_back(x);
+        }
+    }
+    cout << "Paros: \n";
+    for(int x : paros){
+        cout << x << " ";
+    }
+    cout << endl;
+    cout << "Paratlan: \n";
+    for(int x : paratlan){
+        cout << x << " ";
+    }
+}
+
+int main(){
+    vector<int> v = {7,4, 11, 2, 9, 6, 13, 8, 3};
+    szetvalogat(v);
+}
+
+10
+
+Unió - vendéglisták
+Két halmaz összes eleme ismétlés nélkül
+
+Közepes
+
+Adott két vendéglista (nevek):
+A = {"Anna", "Béla", "Csaba", "Dóra"}
+B = {"Béla", "Erika", "Csaba", "Fanni"}
+
+Írj függvényt unio(vector a, vector b) névvel, amely visszaadja az összes vendég nevét ismétlés nélkül!
+
+Tipp (tétel)
+Unió: másold a-t c-be, majd b minden elemét add hozzá, ha még nincs benne (lin. keresés).
+
+==========MEGOLDAS-10==========
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+vector<string> unio(vector<string> a, vector<string> b){
+    vector<string> uj;
+    for(string i : a){
+        uj.push_back(i);
+    }
+    for(string i : b){
+        uj.push_back(i);
+    }
+    sort(uj.begin(), uj.end());
+    for(int i = 0; i < uj.size()-1; i++){
+        if(uj[i] == uj[i+1]){
+            uj[i].erase();
+        }
+    }
+    return uj;
+}
+
+int main(){
+    vector<string> a = {"Anna", "Béla", "Csaba", "Dóra"};
+    vector<string> b = {"Béla", "Erika", "Csaba", "Fanni"};
+    vector<string> uj = unio(a, b);
+    for(string x : uj){
+        cout << x << " ";
+    }
+}
+
+
+11
+
+
+Maximum kiválasztás - értéksínnel
+
+Legnagyobb elem és indexe
+
+
+Alap
+
+
+Adott egy vektor részvényárfolyamokkal (napi záróárak, forintban):
+
+{4250, 4810, 4670, 5120, 4990, 5340, 5210}
+
+
+Írj függvényt legjobb_nap(vector v) névvel, amely visszaadja a legmagasabb árfolyamot ÉS azt, hogy a
+
+hét hányadik napján volt (1-es indexeléssel)!
+
+Használj pair visszatérési típust!
+
+
+Tipp (tétel)
+
+Maximum: indulj v[0]-val és 0-s indexszel, for ciklus 1-től. Ha v[i] > max > frissít.
+
+=======================
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+pair<int, int> legjobb_nap(vector<int> v) {
+    int max_ar = v[0];
+    int max_idx = 0;
+
+    for (int i = 1; i < v.size(); i++) {
+        if (v[i] > max_ar) {
+            max_ar = v[i];
+            max_idx = i;
+        }
+    }
+
+    return {max_ar, max_idx + 1}; // +1 mert 1-es indexelés
+}
+
+int main() {
+    vector<int> arfolyam = {4250, 4810, 4670, 5120, 4990, 5340, 5210};
+
+    pair<int, int> eredmeny = legjobb_nap(arfolyam);
+
+    cout << "Legmagasabb árfolyam: " << eredmeny.first << " Ft" << endl;
+    cout << "A hét " << eredmeny.second << ". napján" << endl;
+
+    return 0;
+}
+
+================================
+
+12
+
+
+Minimum kiválasztás - raktárkészlet
+
+Legkisebb elem és indexe
+
+
+Alap
+
+
+Adott egy vektor termékek raktárkészletével (darabszám):
+
+{150, 23, 87, 5, 210, 44, 8}
+
+
+Írj függvényt legsurgosebb(vector v) névvel, amely visszaadja a legkisebb készletű termék értékét és
+
+indexét!
+
+Írd ki: "Legsürgősebb feltöltés: [készlet] db (index: [i])"
+
+
+Tipp (tétel)
+
+Minimum: ugyanaz mint maximum, csak a feltétel fordított: v[i] < min.
+
+=======================
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+pair<int, int> legsurgosebb(vector<int> v) {
+    int min_keszlet = v[0];
+    int min_idx = 0;
+
+    for (int i = 1; i < v.size(); i++) {
+        if (v[i] < min_keszlet) {
+            min_keszlet = v[i];
+            min_idx = i;
+        }
+    }
+
+    return {min_keszlet, min_idx};
+}
+
+int main() {
+    vector<int> keszlet = {150, 23, 87, 5, 210, 44, 8};
+
+    pair<int, int> eredmeny = legsurgosebb(keszlet);
+
+    cout << "Legsürgősebb feltöltés: " << eredmeny.first 
+         << " db (index: " << eredmeny.second << ")" << endl;
+
+    return 0;
+}
+
+=============================
+
+13
+
+
+Buborékrendezés - jegyek
+
+Saját rendezési implementáció
+
+
+Közepes
+
+
+Adott egy vektor diákok ZH jegyeivel:
+
+{67, 45, 88, 32, 91, 55, 78, 23, 84}
+
+
+Írj függvényt buborek(vector& v) névvel, amely buborékrendezéssel növekvő sorba rendezi a jegyeket
+
+(NEM használhatsz sort()-ot)!
+
+Írasd ki a vektort rendezés előtt és után!
+
+
+Tipp (tétel)
+
+Buborék: külső ciklus 0 .. n-2, belső 0 .. n-2-i. Ha v[j]>v[j+1] > swap.
+
+=============================
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void buborek(vector<int>& v) {
+    int n = v.size();
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - 1 - i; j++) {
+            if (v[j] > v[j + 1]) {
+                int temp = v[j];
+                v[j] = v[j + 1];
+                v[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void kiir(vector<int>& v) {
+    for (int i = 0; i < v.size(); i++) {
+        cout << v[i];
+        if (i < v.size() - 1) cout << ", ";
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<int> jegyek = {67, 45, 88, 32, 91, 55, 78, 23, 84};
+
+    cout << "Rendezés előtt: ";
+    kiir(jegyek);
+
+    buborek(jegyek);
+
+    cout << "Rendezés után:  ";
+    kiir(jegyek);
+
+    return 0;
+}
+
+================================
+
+14
+
+
+Rendezés cserével- ülésrend
+
+Selection sort implementáció
+
+
+Közepes
+
+
+Adott egy vektor magassági adatokkal (cm-ben), amelyek alapján ülésrendet kell kialakítani:
+
+{165, 182, 158, 175, 170, 190, 163}
+
+
+Írj függvényt rendezes_cserevel(vector& v) névvel, amely növekvő sorba rendezi az adatokat cserés
+
+rendezéssel!
+
+
+Tipp (tétel)
+
+Rendezés cserével: külső ciklus i=0 .. n-2, belső j=i+1 .. n-1. Ha v[i]>v[j] > swap.
+
+========================
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void rendezes_cserevel(vector<int>& v) {
+    int n = v.size();
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (v[i] > v[j]) {
+                int temp = v[i];
+                v[i] = v[j];
+                v[j] = temp;
+            }
+        }
+    }
+}
+
+void kiir(vector<int>& v) {
+    for (int i = 0; i < v.size(); i++) {
+        cout << v[i];
+        if (i < v.size() - 1) cout << ", ";
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<int> magassag = {165, 182, 158, 175, 170, 190, 163};
+
+    cout << "Rendezés előtt: ";
+    kiir(magassag);
+
+    rendezes_cserevel(magassag);
+
+    cout << "Rendezés után:  ";
+    kiir(magassag);
+
+    return 0;
+}
+
+=========================
+
+15
+
+
+Bináris keresés - szótár
+
+Keresés rendezett tömbben
+
+
+Közepes
+
+
+Adott egy rendezett vektor egész számokkal (pl. szótár oldalszámai):
+
+{12, 25, 38, 47, 56, 63, 71, 89, 94, 107}
+
+
+Írj függvényt bin_keres(vector v, int ker) névvel, amely bináris kereséssel megkeresi az elemet és
+
+visszaadja indexét (vagy -1-et)!
+
+Teszteld: keresd a 63-at és a 50-et! Írj kommentet, hogy mikor melyik felet dobja el!
+
+
+Tipp (tétel)
+
+Bináris: elso=0, utolso=n-1. Amíg elso <= utolso: kozep=(e+u)/2. Ha v[kozep] == ker > return. Ha ker
+
+=========================
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int bin_keres(vector<int> v, int ker) {
+    int elso = 0;
+    int utolso = v.size() - 1;
+
+    while (elso <= utolso) {
+        int kozep = (elso + utolso) / 2;
+
+        if (v[kozep] == ker) {
+            return kozep;                  // megtaláltuk
+        } else if (ker < v[kozep]) {
+            utolso = kozep - 1;            // bal felet tartjuk, jobb felet dobjuk el
+        } else {
+            elso = kozep + 1;              // jobb felet tartjuk, bal felet dobjuk el
+        }
+    }
+
+    return -1; // nem található
+}
+
+int main() {
+    vector<int> szótar = {12, 25, 38, 47, 56, 63, 71, 89, 94, 107};
+
+    int ker1 = 63;
+    int eredmeny1 = bin_keres(szótar, ker1);
+    if (eredmeny1 != -1)
+        cout << ker1 << " megtalálva, index: " << eredmeny1 << endl;
+    else
+        cout << ker1 << " nem található" << endl;
+
+    int ker2 = 50;
+    int eredmeny2 = bin_keres(szótar, ker2);
+    if (eredmeny2 != -1)
+        cout << ker2 << " megtalálva, index: " << eredmeny2 << endl;
+    else
+        cout << ker2 << " nem található" << endl;
+
+    return 0;
+}
+
+=========================
+
+16
+
+
+Összefuttatás - névsorok
+
+Két rendezett vektor összefésülése
+
+
+Nehéz
+
+
+Adott két rendezett vektor (pl. két osztály névsorának betűrendes kódjai):
+
+A = {11, 23, 34, 45, 67}
+
+B = {15, 23, 41, 67, 89, 95}
+
+
+Írj függvényt osszefuttatas(vector a, vector b) névvel, amely rendezetten fésüli össze a két
+
+vektort! (Ha mindkettőben szerepel egy szám, csak egyszer szerepeljen az eredményben!)
+
+
+Tipp (tétel)
+
+Összefuttatás: i=0, j=0 mutatók. Amíg mindkettő él: kisebbet tedd be, azt a mutatót léptesd. Végén
+
+a maradékot told be.
+
+========================
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<int> osszefuttatas(vector<int> a, vector<int> b) {
+    vector<int> eredmeny;
+    int i = 0, j = 0;
+
+    while (i < a.size() && j < b.size()) {
+        if (a[i] < b[j]) {
+            eredmeny.push_back(a[i]);
+            i++;
+        } else if (a[i] > b[j]) {
+            eredmeny.push_back(b[j]);
+            j++;
+        } else {
+            // egyenlők → csak egyszer tesszük be
+            eredmeny.push_back(a[i]);
+            i++;
+            j++;
+        }
+    }
+
+    // A maradék betolása
+    while (i < a.size()) {
+        eredmeny.push_back(a[i]);
+        i++;
+    }
+    while (j < b.size()) {
+        eredmeny.push_back(b[j]);
+        j++;
+    }
+
+    return eredmeny;
+}
+
+void kiir(vector<int>& v) {
+    for (int i = 0; i < v.size(); i++) {
+        cout << v[i];
+        if (i < v.size() - 1) cout << ", ";
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<int> A = {11, 23, 34, 45, 67};
+    vector<int> B = {15, 23, 41, 67, 89, 95};
+
+    cout << "A: "; kiir(A);
+    cout << "B: "; kiir(B);
+
+    vector<int> eredmeny = osszefuttatas(A, B);
+    cout << "Összefésülve: "; kiir(eredmeny);
+
+    return 0;
+}
+
+========================
+
+17
+
+
+Rekurzió - hatványozás
+
+Rekurzív függvény írása
+
+
+Közepes
+
+
+Írj rekurzív függvényt hatvany(int alap, int kitevo) névvel, amely kiszámítja az alap kitevo-adik
+
+hatványát!
+
+(Tehát: hatvany(2, 10) = 1024)
+
+
+Feltételek:
+
+- NEM használhatsz pow()-t!
+
+- A kitevo mindig nemnegatív egész!
+
+- Írd le a rekurzív összefüggést kommentként!
+
+Teszteld: 2^10, 3^4, 5^0
+
+
+Tipp (tétel)
+
+Báziseset: kitevo == 0 > return 1. Rekurzív eset: return alap * hatvany(alap, kitevo-1).
+
+=====================
+
+#include <iostream>
+using namespace std;
+
+// Rekurzív összefüggés:
+// hatvany(alap, 0)      = 1
+// hatvany(alap, kitevo) = alap * hatvany(alap, kitevo - 1)
+
+int hatvany(int alap, int kitevo) {
+    if (kitevo == 0) return 1;                        // báziseset
+    return alap * hatvany(alap, kitevo - 1);          // rekurzív eset
+}
+
+int main() {
+    cout << "2^10 = " << hatvany(2, 10) << endl;
+    cout << "3^4  = " << hatvany(3, 4)  << endl;
+    cout << "5^0  = " << hatvany(5, 0)  << endl;
+
+    return 0;
+}
+
+======================
+
+18
+
+
+Fibonacci - tartomány
+
+Fibonacci számok adott határig
+
+
+Közepes
+
+
+Írj függvényt fibo_listaz(int határ) névvel, amely kiírja az összes Fibonacci számot, amely kisebb
+
+vagy egyenlő mint a határ!
+
+Majd írj egy másik függvényt fibo_kozt(int a, int b) névvel, amely visszaadja a legelső Fibonacci
+
+számot, amely a ≤ szám ≤ b intervallumba esik (vagy -1-et ha nincs ilyen)!
+
+
+Teszteld: határ=100, intervallum [20, 40]
+
+
+Tipp (tétel)
+
+Fibonacci: elozo=0, jelenlegi=1, ciklus amíg jelenlegi <= határ: kiír, kov=e+j, e=j, j=kov.
+
+=====================
+
+#include <iostream>
+using namespace std;
+
+void fibo_listaz(int hatar) {
+    int elozo = 0, jelenlegi = 1;
+
+    cout << "Fibonacci számok (≤ " << hatar << "): ";
+    cout << elozo << ", ";
+
+    while (jelenlegi <= hatar) {
+        cout << jelenlegi;
+        int kov = elozo + jelenlegi;
+        elozo = jelenlegi;
+        jelenlegi = kov;
+        if (jelenlegi <= hatar) cout << ", ";
+    }
+    cout << endl;
+}
+
+int fibo_kozt(int a, int b) {
+    int elozo = 0, jelenlegi = 1;
+
+    if (elozo >= a && elozo <= b) return elozo;
+
+    while (jelenlegi <= b) {
+        if (jelenlegi >= a && jelenlegi <= b) return jelenlegi;
+        int kov = elozo + jelenlegi;
+        elozo = jelenlegi;
+        jelenlegi = kov;
+    }
+
+    return -1; // nincs ilyen
+}
+
+int main() {
+    fibo_listaz(100);
+
+    int a = 20, b = 40;
+    int eredmeny = fibo_kozt(a, b);
+
+    if (eredmeny != -1)
+        cout << "Első Fibonacci [" << a << ", " << b << "] között: " << eredmeny << endl;
+    else
+        cout << "Nincs Fibonacci szám [" << a << ", " << b << "] között" << endl;
+
+    return 0;
+}
+
+=====================
+
+19
+
+
+LNKO es LKKT
+
+Rekurzív euklideszi algoritmus
+
+
+Közepes
+
+
+Írj rekurzív függvényt Inko(int a, int b) névvel (Euklideszi algoritmus)!
+
+Majd írj Ikkt(int a, int b) névvel egy másik függvényt, amely a Inko segítségével kiszámítja a két
+
+szám legkisebb közös többszörösét!
+
+
+Teszteld:
+
+- Inko(48, 18) = ?
+
+- lkkt(12, 18) = ?
+
+- lkkt(7, 13) = ?
+
+
+Tipp (tétel)
+
+LNKO: ha b == 0> return a. Különben: return Inko(b, a%b). LKKT: (a*b)/Inko(a,b).
+
+=====================
+
+#include <iostream>
+using namespace std;
+
+// Rekurzív összefüggés:
+// lnko(a, 0) = a
+// lnko(a, b) = lnko(b, a % b)
+
+int lnko(int a, int b) {
+    if (b == 0) return a;           // báziseset
+    return lnko(b, a % b);          // rekurzív eset
+}
+
+int lkkt(int a, int b) {
+    return (a * b) / lnko(a, b);
+}
+
+int main() {
+    cout << "lnko(48, 18) = " << lnko(48, 18) << endl;
+    cout << "lkkt(12, 18) = " << lkkt(12, 18) << endl;
+    cout << "lkkt(7, 13)  = " << lkkt(7, 13)  << endl;
+
+    return 0;
+}
+
+====================
+
+20
+
+
+Prímszám - szita
+
+Prímek felsorolása és ellenőrzés
+
+
+Közepes
+
+
+Írj függvényt prim_e(int n) névvel, amely eldönti egy számról hogy prím-e!
+
+Majd írj primek_ig(int határ) függvényt, amely kilistázza az összes prímszámot 2-től a határig!
+
+
+Teszteld:
+
+- prim_e(17), prim_e(1), prim_e(49)
+
+-primek_ig(50)
+
+
+Figyelj: 1 NEM prím! Hatékonyság: csak sqrt(n)-ig kell ellenőrizni!
+
+
+Tipp (tétel)
+
+Prím: ha n <= 1> false. for i=2; i <= sqrt(n); i++: ha n%i == 0 > false. return true.
+
+=====================
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+bool prim_e(int n) {
+    if (n <= 1) return false;                    // 1 és alatta nem prím
+    for (int i = 2; i <= sqrt(n); i++) {
+        if (n % i == 0) return false;            // van osztója → nem prím
+    }
+    return true;
+}
+
+void primek_ig(int hatar) {
+    cout << "Prímek 2-től " << hatar << "-ig: ";
+    for (int i = 2; i <= hatar; i++) {
+        if (prim_e(i)) cout << i << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    cout << "prim_e(17) = " << (prim_e(17) ? "igen" : "nem") << endl;
+    cout << "prim_e(1)  = " << (prim_e(1)  ? "igen" : "nem") << endl;
+    cout << "prim_e(49) = " << (prim_e(49) ? "igen" : "nem") << endl;
+    cout << endl;
+    primek_ig(50);
+
+    return 0;
+}
+
+======================
+
+21
+
+
+Palindróm - szöveg
+
+String palindróm ellenőrzés
+
+
+Alap
+
+
+Írj függvényt palindrom(string s) névvel, amely eldönti egy szövegről hogy palindróm-e (előre és
+
+visszafelé olvasva ugyanaz)!
+
+
+Teszteld: "radar", "level", "hello", "abba", "racecar"
+
+
+Bónusz: írj egy verziót, amely nagybetű/kisbetű különbséget és szóközöket figyelmen kívül hagy!
+
+(pl. "Race a car" nem palindróm, de "A man a plan a canal Panama" igen, ha kiszeded a szóközöket)
+
+
+Tipp (tétel)
+
+Palindróm: string forditott(s.rbegin(), s.rend()); return s == forditott; VAGY két mutatóval belülről.
+
+=====================
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+// Alap verzió
+bool palindrom(string s) {
+    string forditott(s.rbegin(), s.rend());
+    return s == forditott;
+}
+
+// Bónusz verzió - szóköz és kis/nagybetű figyelmen kívül
+bool palindrom_okos(string s) {
+    // csak betűket tartjuk meg, kisbetűsítve
+    string tiszta = "";
+    for (char c : s) {
+        if (c != ' ') tiszta += tolower(c);
+    }
+    string forditott(tiszta.rbegin(), tiszta.rend());
+    return tiszta == forditott;
+}
+
+int main() {
+    // Alap tesztek
+    cout << "=== Alap verzió ===" << endl;
+    cout << "radar   : " << (palindrom("radar")   ? "igen" : "nem") << endl;
+    cout << "level   : " << (palindrom("level")   ? "igen" : "nem") << endl;
+    cout << "hello   : " << (palindrom("hello")   ? "igen" : "nem") << endl;
+    cout << "abba    : " << (palindrom("abba")    ? "igen" : "nem") << endl;
+    cout << "racecar : " << (palindrom("racecar") ? "igen" : "nem") << endl;
+
+    // Bónusz tesztek
+    cout << endl << "=== Bónusz verzió ===" << endl;
+    cout << "Race a car              : " << (palindrom_okos("Race a car")              ? "igen" : "nem") << endl;
+    cout << "A man a plan a canal Panama : " << (palindrom_okos("A man a plan a canal Panama") ? "igen" : "nem") << endl;
+
+    return 0;
+}
+
+=======================
+
+22
+
+
+Medián és átlag - statisztika
+
+Statisztikai alapszámítások
+
+
+Közepes
+
+
+Adott egy vektor diákok ZH pontszámaival:
+
+{72, 85, 61, 90, 45, 78, 55, 88, 73, 67}
+
+
+Írj három függvényt:
+
+1. atlag(vector v) > double, a pontszámok átlaga
+
+2. median(vector v) > double, a medián érték
+
+3. szoras(vector v) > double, a szórás (sqrt(átlag of (xi-átlag)2))
+
+
+Írasd ki mindhármat!
+
+
+Tipp (tétel)
+
+Medián: sort(), ha n páros: (v[n/2-1]+v[n/2])/2.0, ha páratlan: v[n/2]. Szórás: #include szükséges.
+
+=======================
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+
+double atlag(vector<int> v) {
+    double osszeg = 0;
+    for (int x : v) osszeg += x;
+    return osszeg / v.size();
+}
+
+double median(vector<int> v) {
+    sort(v.begin(), v.end());
+    int n = v.size();
+    if (n % 2 == 0)
+        return (v[n/2 - 1] + v[n/2]) / 2.0;   // páros: két középső átlaga
+    else
+        return v[n/2];                           // páratlan: középső elem
+}
+
+double szoras(vector<int> v) {
+    double atl = atlag(v);
+    double osszeg = 0;
+    for (int x : v) osszeg += (x - atl) * (x - atl);
+    return sqrt(osszeg / v.size());
+}
+
+int main() {
+    vector<int> pontok = {72, 85, 61, 90, 45, 78, 55, 88, 73, 67};
+
+    cout << "Átlag:  " << atlag(pontok)  << endl;
+    cout << "Medián: " << median(pontok) << endl;
+    cout << "Szórás: " << szoras(pontok) << endl;
+
+    return 0;
+}
+
+======================
+
+23
+
+
+2D tömb - osztályzatok
+
+Kétdimenziós vektor feldolgozása
+
+
+Közepes
+
+
+Adott egy 2D-s tömb, ahol sorok = diákok, oszlopok = tárgyak jegyei:
+
+{{5, 4, 3,5,4},
+
+{3,2,4,3,5},
+
+{5, 5, 5, 4,5},
+
+{2,3,2,4,3}}
+
+
+Írd ki:
+
+1. Minden diák átlagát (sorátlag)
+
+2. Minden tárgy átlagát (oszlopátlag)
+
+3. A legjobb diák indexét (legmagasabb sorátlag)
+
+4. A főátló elemeit
+
+
+Tipp (tétel)
+
+Sorátlag: belső for j loop, összeadod és osztod oszlopszámmal. Oszlopátlag: külső j, belső i loop.
+
+====================
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<vector<int>> jegyek = {
+        {5, 4, 3, 5, 4},
+        {3, 2, 4, 3, 5},
+        {5, 5, 5, 4, 5},
+        {2, 3, 2, 4, 3}
+    };
+
+    int sorok   = jegyek.size();
+    int oszlopok = jegyek[0].size();
+
+    // 1. Sorátlagok (diákok átlaga)
+    cout << "=== Diákok átlaga ===" << endl;
+    int legjobb_idx = 0;
+    double legjobb_atlag = 0;
+
+    for (int i = 0; i < sorok; i++) {
+        double osszeg = 0;
+        for (int j = 0; j < oszlopok; j++) osszeg += jegyek[i][j];
+        double atlag = osszeg / oszlopok;
+        cout << "Diák " << i+1 << ": " << atlag << endl;
+
+        if (atlag > legjobb_atlag) {
+            legjobb_atlag = atlag;
+            legjobb_idx = i;
+        }
+    }
+
+    // 2. Oszlopátlagok (tárgyak átlaga)
+    cout << endl << "=== Tárgyak átlaga ===" << endl;
+    for (int j = 0; j < oszlopok; j++) {
+        double osszeg = 0;
+        for (int i = 0; i < sorok; i++) osszeg += jegyek[i][j];
+        cout << "Tárgy " << j+1 << ": " << osszeg / sorok << endl;
+    }
+
+    // 3. Legjobb diák
+    cout << endl << "=== Legjobb diák ===" << endl;
+    cout << "Diák " << legjobb_idx+1 << " (átlag: " << legjobb_atlag << ")" << endl;
+
+    // 4. Főátló elemei
+    cout << endl << "=== Főátló elemei ===" << endl;
+    int atlo_meret = min(sorok, oszlopok);
+    for (int i = 0; i < atlo_meret; i++) {
+        cout << "jegyek[" << i << "][" << i << "] = " << jegyek[i][i] << endl;
+    }
+
+    return 0;
+}
+
+=======================
+
+24
+
+
+Struct + fájlbeolvasás
+
+Struktúra feltöltése fájlból
+
+
+Fájl
+
+
+Hozz létre egy "hallgatok.txt" fájlt a következő tartalommal:
+
+Anna 22 85
+
+Béla 21 72
+
+Csaba 23 91
+
+
+Dóra 22 68
+
+
+Erik 24 55
+
+
+Minden sor: nev kor pontszam
+
+
+Definiálj Hallgato structot (nev: string, kor: int, pont: int)!
+
+Írj beolvas(string fajlnev) függvényt, amely feltölti a vektort!
+
+Majd írd ki: ki felelt meg (pont >= 60), ki a legjobb, és mi az átlagpontszám!
+
+
+Tipp (tétel)
+
+ifstream f(fajlnev); string sor; while(getline(f,sor)){ stringstream ss(sor);
+
+ss>>h.nev>>h.kor>>h.pont;}
+
+====================
+
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct Hallgato {
+    string nev;
+    int kor;
+    int pont;
+};
+
+vector<Hallgato> beolvas(string fajlnev) {
+    vector<Hallgato> hallgatok;
+    ifstream f(fajlnev);
+    string sor;
+
+    while (getline(f, sor)) {
+        if (sor.empty()) continue;         // üres sorokat kihagyjuk
+        stringstream ss(sor);
+        Hallgato h;
+        ss >> h.nev >> h.kor >> h.pont;
+        hallgatok.push_back(h);
+    }
+    return hallgatok;
+}
+
+int main() {
+    // Fájl létrehozása
+    ofstream keszit("hallgatok.txt");
+    keszit << "Anna 22 85\n";
+    keszit << "Bela 21 72\n";
+    keszit << "Csaba 23 91\n";
+    keszit << "\n";
+    keszit << "Dora 22 68\n";
+    keszit << "\n";
+    keszit << "Erik 24 55\n";
+    keszit.close();
+
+    vector<Hallgato> hallgatok = beolvas("hallgatok.txt");
+
+    // 1. Kik feleltek meg?
+    cout << "=== Megfeleltek (pont >= 60) ===" << endl;
+    for (Hallgato h : hallgatok) {
+        if (h.pont >= 60)
+            cout << h.nev << " (" << h.pont << " pont)" << endl;
+    }
+
+    // 2. Legjobb hallgató
+    Hallgato legjobb = hallgatok[0];
+    for (Hallgato h : hallgatok) {
+        if (h.pont > legjobb.pont) legjobb = h;
+    }
+    cout << endl << "=== Legjobb hallgató ===" << endl;
+    cout << legjobb.nev << " (" << legjobb.pont << " pont)" << endl;
+
+    // 3. Átlagpontszám
+    double osszeg = 0;
+    for (Hallgato h : hallgatok) osszeg += h.pont;
+    cout << endl << "=== Átlagpontszám ===" << endl;
+    cout << osszeg / hallgatok.size() << " pont" << endl;
+
+    return 0;
+}
+
+========================
+
+25
+
+
+Fájlba írás - feldolgozás
+
+Beolvasás és eredmény fájlba
+
+
+Fájl
+
+
+Hozz létre egy "homerseklet.txt" fájlt, ahol minden sor egy nap mért hőmérsékleti értékeit
+
+tartalmazza:
+
+
+-2-1013
+
+58769
+
+
+-3-2-4-1-3
+
+15 18 20 17 16
+
+
+Soronként számold ki az átlaghőmérsékletet, és egy "eredmeny.txt" fájlba írj minden sorhoz:
+
+- az átlaghőmérsékletet 2 tizedesre kerekítve
+
+- hogy volt-e azon a napon fagypont (Igen/Nem)
+
+
+Tipp (tétel)
+
+while(getline(be, sor)){ istringstream iss(sor); while(iss>>szam){ ... } kiFile << fixed <<
+
+setprecision(2) << atlag; }
+
+======================
+
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+int main() {
+    // Fájl létrehozása
+    ofstream keszit("homerseklet.txt");
+    keszit << "-2 -1 0 1 3\n";
+    keszit << "5 8 7 6 9\n";
+    keszit << "-3 -2 -4 -1 -3\n";
+    keszit << "15 18 20 17 16\n";
+    keszit.close();
+
+    ifstream be("homerseklet.txt");
+    ofstream ki("eredmeny.txt");
+
+    ki << fixed << setprecision(2);
+
+    string sor;
+    int nap = 1;
+
+    while (getline(be, sor)) {
+        if (sor.empty()) continue;
+
+        istringstream iss(sor);
+        double osszeg = 0;
+        int db = 0;
+        bool volt_fagy = false;
+        int szam;
+
+        while (iss >> szam) {
+            osszeg += szam;
+            db++;
+            if (szam < 0) volt_fagy = true;
+        }
+
+        double atlag = osszeg / db;
+
+        cout << "Nap " << nap << ": atlag=" << atlag
+             << "°C, fagy=" << (volt_fagy ? "Igen" : "Nem") << endl;
+
+        ki << "Nap " << nap << ": atlag=" << atlag
+           << "°C, fagy=" << (volt_fagy ? "Igen" : "Nem") << "\n";
+
+        nap++;
+    }
+
+    be.close();
+    ki.close();
+
+    cout << "\nEredmények elmentve: eredmeny.txt" << endl;
+
+    return 0;
+}
+
+=======================
+
+26
+
+
+Map - szószámlálás
+
+Szógyakoriság elemzése
+
+
+Fájl
+
+
+Hozz létre egy "szoveg.txt" fájlt néhány mondattal (legalább 20 szóval, legyenek ismétlődő
+
+szavak)!
+
+
+Írj szoszamlalas(string fajlnev) függvényt, amely:
+
+1. Megszámolja minden szó előfordulásait (map)
+
+2. Kiírja a top 3 leggyakoribb szót és előfordulásukat
+
+3. Kiírja hány különböző szó szerepel
+
+4. Kiírja az átlagos szóhosszt
+
+
+Tipp (tétel)
+
+map szavak; while(f>>szo) szavak[szo]++; Rendezéshez: vector> lista(szavak.begin(),
+
+szavak.end());
+
+=====================
+
+#include <iostream>
+#include <fstream>
+#include <map>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+void szoszamlalas(string fajlnev) {
+    ifstream f(fajlnev);
+    map<string, int> szavak;
+    string szo;
+    int ossz_hossz = 0;
+    int ossz_db = 0;
+
+    while (f >> szo) {
+        szavak[szo]++;
+        ossz_hossz += szo.size();
+        ossz_db++;
+    }
+
+    // 1. Top 3 - vector-ba rendezve
+    vector<pair<string, int>> lista(szavak.begin(), szavak.end());
+    sort(lista.begin(), lista.end(), [](auto& a, auto& b) {
+        return a.second > b.second;    // gyakoriság szerint csökkenő
+    });
+
+    cout << "=== Top 3 leggyakoribb szó ===" << endl;
+    for (int i = 0; i < 3 && i < lista.size(); i++) {
+        cout << i+1 << ". \"" << lista[i].first
+             << "\" - " << lista[i].second << "x" << endl;
+    }
+
+    // 2. Különböző szavak
+    cout << endl << "=== Különböző szavak ===" << endl;
+    cout << szavak.size() << " db" << endl;
+
+    // 3. Átlagos szóhossz
+    cout << endl << "=== Átlagos szóhossz ===" << endl;
+    cout << (double)ossz_hossz / ossz_db << " karakter" << endl;
+}
+
+int main() {
+    // Fájl létrehozása
+    ofstream keszit("szoveg.txt");
+    keszit << "a macska es a kutya jatszott a kertben\n";
+    keszit << "a macska felment a fara de a kutya nem tudott\n";
+    keszit << "a gyerek nezte a macskát es a kutyat a kertben\n";
+    keszit.close();
+
+    szoszamlalas("szoveg.txt");
+
+    return 0;
+}
+
+====================
+
+27
+
+
+OOP - Jármű öröklés
+
+Osztályok, öröklés, virtuális függvény
+
+
+Hozz létre egy Jarmu alaposztályt a következő tulajdonságokkal:
+
+- rendszam (string), sebesseg (int) tagváltozók
+
+- konstruktor
+
+- virtual double uzemanyag_koltseg() = 0 (tisztán virtuális)
+
+- virtual void info() - kiírja a rendszámot és sebességet
+
+
+Hozz létre két leszármazottat:
+
+- Auto(rendszam, sebesseg, fogyasztas_per_100km) > uzemanyag_koltseg = fogyasztas * 500
+
+(Ft/liter)
+
+- Motor(rendszam, sebesseg, fogyasztas_per_100km) > uzemanyag_koltseg = fogyasztas * 500 *
+
+0.8 (olcsóbb)
+
+
+Hozz létre 3 járművet (auto pointer), tárold vektorban, hívd meg az info()-t mindegyikre!
+
+
+Tipp (tétel)
+
+class Auto : public Jarmu { public: Auto(s,seb,f):Jarmu(s,seb),fogyasztas(f)f double
+
+uzemanyag_koltseg() override { ... } };
+
+=======================
+
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Jarmu {
+protected:
+    string rendszam;
+    int sebesseg;
+
+public:
+    Jarmu(string r, int s) : rendszam(r), sebesseg(s) {}
+
+    virtual double uzemanyag_koltseg() = 0;  // tisztán virtuális
+
+    virtual void info() {
+        cout << "Rendszám: " << rendszam
+             << ", Sebesség: " << sebesseg << " km/h";
+    }
+
+    virtual ~Jarmu() {}
+};
+
+class Auto : public Jarmu {
+    double fogyasztas;
+public:
+    Auto(string r, int s, double f) : Jarmu(r, s), fogyasztas(f) {}
+
+    double uzemanyag_koltseg() override {
+        return fogyasztas * 500;
+    }
+
+    void info() override {
+        Jarmu::info();
+        cout << ", Típus: Autó"
+             << ", Üzemanyagköltség/100km: " << uzemanyag_koltseg() << " Ft" << endl;
+    }
+};
+
+class Motor : public Jarmu {
+    double fogyasztas;
+public:
+    Motor(string r, int s, double f) : Jarmu(r, s), fogyasztas(f) {}
+
+    double uzemanyag_koltseg() override {
+        return fogyasztas * 500 * 0.8;
+    }
+
+    void info() override {
+        Jarmu::info();
+        cout << ", Típus: Motor"
+             << ", Üzemanyagköltség/100km: " << uzemanyag_koltseg() << " Ft" << endl;
+    }
+};
+
+int main() {
+    vector<Jarmu*> jarmuvek;
+
+    jarmuvek.push_back(new Auto("ABC-123", 130, 6.5));
+    jarmuvek.push_back(new Auto("XYZ-789", 110, 8.0));
+    jarmuvek.push_back(new Motor("MOT-456", 150, 4.5));
+
+    cout << "=== Járművek ===" << endl;
+    for (Jarmu* j : jarmuvek) {
+        j->info();
+    }
+
+    // Memória felszabadítás
+    for (Jarmu* j : jarmuvek) delete j;
+
+    return 0;
+}
+
+=====================
+
+
+28
+
+
+Szóhossz elemzés - beolvasás
+
+cin beolvasás, szövegstatisztika
+
+
+Közepes
+
+
+Írj programot, amely:
+
+1. Bekér n darab szót a billentyűzetről (n-t is bekéri!)
+
+2. Kiírja a leghosszabb és legrövidebb szót
+
+3. Kiírja az átlagos szóhosszt
+
+4. Kiírja azokat a szavakat, amelyek hossza meghaladja az átlagot
+
+5. Rendezi a szavakat hossz szerint (rövidebbtől hosszabbig) és kiírja
+
+
+Teszteld legalább 6 szóval!
+
+
+Tipp (tétel)
+
+vector szavak; for(int i=0;i>s; szavak.push_back(s);} Sort: sort(v.begin(),v.end(),[](s a, s b){return
+
+a.size() 
+
+=========================
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Hány szót adsz meg? ";
+    cin >> n;
+
+    vector<string> szavak;
+    for (int i = 0; i < n; i++) {
+        string s;
+        cout << i+1 << ". szó: ";
+        cin >> s;
+        szavak.push_back(s);
+    }
+
+    // 1. Leghosszabb és legrövidebb
+    string leghosszabb = szavak[0];
+    string legroviebb  = szavak[0];
+    double ossz_hossz  = 0;
+
+    for (string s : szavak) {
+        ossz_hossz += s.size();
+        if (s.size() > leghosszabb.size()) leghosszabb = s;
+        if (s.size() < legroviebb.size())  legroviebb  = s;
+    }
+
+    double atlag = ossz_hossz / n;
+
+    cout << endl;
+    cout << "=== Leghosszabb szó ===" << endl;
+    cout << leghosszabb << " (" << leghosszabb.size() << " karakter)" << endl;
+
+    cout << endl << "=== Legrövidebb szó ===" << endl;
+    cout << legroviebb << " (" << legroviebb.size() << " karakter)" << endl;
+
+    // 2. Átlagos szóhossz
+    cout << endl << "=== Átlagos szóhossz ===" << endl;
+    cout << atlag << " karakter" << endl;
+
+    // 3. Átlag feletti szavak
+    cout << endl << "=== Átlagnál hosszabb szavak ===" << endl;
+    for (string s : szavak) {
+        if (s.size() > atlag) cout << s << " (" << s.size() << ")" << endl;
+    }
+
+    // 4. Rendezés hossz szerint
+    sort(szavak.begin(), szavak.end(), [](string a, string b) {
+        return a.size() < b.size();
+    });
+
+    cout << endl << "=== Szavak hossz szerint ===" << endl;
+    for (string s : szavak) {
+        cout << s << " (" << s.size() << ")" << endl;
+    }
+
+    return 0;
+}

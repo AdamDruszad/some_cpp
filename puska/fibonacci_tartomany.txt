@@ -1,0 +1,76 @@
+18
+
+
+Fibonacci - tartomány
+
+Fibonacci számok adott határig
+
+
+Közepes
+
+
+Írj függvényt fibo_listaz(int határ) névvel, amely kiírja az összes Fibonacci számot, amely kisebb
+
+vagy egyenlő mint a határ!
+
+Majd írj egy másik függvényt fibo_kozt(int a, int b) névvel, amely visszaadja a legelső Fibonacci
+
+számot, amely a ≤ szám ≤ b intervallumba esik (vagy -1-et ha nincs ilyen)!
+
+
+Teszteld: határ=100, intervallum [20, 40]
+
+
+Tipp (tétel)
+
+Fibonacci: elozo=0, jelenlegi=1, ciklus amíg jelenlegi <= határ: kiír, kov=e+j, e=j, j=kov.
+
+=====================
+
+#include <iostream>
+using namespace std;
+
+void fibo_listaz(int hatar) {
+    int elozo = 0, jelenlegi = 1;
+
+    cout << "Fibonacci számok (≤ " << hatar << "): ";
+    cout << elozo << ", ";
+
+    while (jelenlegi <= hatar) {
+        cout << jelenlegi;
+        int kov = elozo + jelenlegi;
+        elozo = jelenlegi;
+        jelenlegi = kov;
+        if (jelenlegi <= hatar) cout << ", ";
+    }
+    cout << endl;
+}
+
+int fibo_kozt(int a, int b) {
+    int elozo = 0, jelenlegi = 1;
+
+    if (elozo >= a && elozo <= b) return elozo;
+
+    while (jelenlegi <= b) {
+        if (jelenlegi >= a && jelenlegi <= b) return jelenlegi;
+        int kov = elozo + jelenlegi;
+        elozo = jelenlegi;
+        jelenlegi = kov;
+    }
+
+    return -1; // nincs ilyen
+}
+
+int main() {
+    fibo_listaz(100);
+
+    int a = 20, b = 40;
+    int eredmeny = fibo_kozt(a, b);
+
+    if (eredmeny != -1)
+        cout << "Első Fibonacci [" << a << ", " << b << "] között: " << eredmeny << endl;
+    else
+        cout << "Nincs Fibonacci szám [" << a << ", " << b << "] között" << endl;
+
+    return 0;
+}

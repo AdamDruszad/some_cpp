@@ -1,0 +1,4 @@
+Kiss_Peter ABC123 4.2
+Nagy_Anna XYZ789 2.8
+Kovacs_Bela DEF456 3.7
+Toth_Eva GHI012 1.9

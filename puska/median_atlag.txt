@@ -1,0 +1,71 @@
+22
+
+
+Medián és átlag - statisztika
+
+Statisztikai alapszámítások
+
+
+Közepes
+
+
+Adott egy vektor diákok ZH pontszámaival:
+
+{72, 85, 61, 90, 45, 78, 55, 88, 73, 67}
+
+
+Írj három függvényt:
+
+1. atlag(vector v) > double, a pontszámok átlaga
+
+2. median(vector v) > double, a medián érték
+
+3. szoras(vector v) > double, a szórás (sqrt(átlag of (xi-átlag)2))
+
+
+Írasd ki mindhármat!
+
+
+Tipp (tétel)
+
+Medián: sort(), ha n páros: (v[n/2-1]+v[n/2])/2.0, ha páratlan: v[n/2]. Szórás: #include szükséges.
+
+===================
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+
+double atlag(vector<int> v) {
+    double osszeg = 0;
+    for (int x : v) osszeg += x;
+    return osszeg / v.size();
+}
+
+double median(vector<int> v) {
+    sort(v.begin(), v.end());
+    int n = v.size();
+    if (n % 2 == 0)
+        return (v[n/2 - 1] + v[n/2]) / 2.0;   // páros: két középső átlaga
+    else
+        return v[n/2];                           // páratlan: középső elem
+}
+
+double szoras(vector<int> v) {
+    double atl = atlag(v);
+    double osszeg = 0;
+    for (int x : v) osszeg += (x - atl) * (x - atl);
+    return sqrt(osszeg / v.size());
+}
+
+int main() {
+    vector<int> pontok = {72, 85, 61, 90, 45, 78, 55, 88, 73, 67};
+
+    cout << "Átlag:  " << atlag(pontok)  << endl;
+    cout << "Medián: " << median(pontok) << endl;
+    cout << "Szórás: " << szoras(pontok) << endl;
+
+    return 0;
+}

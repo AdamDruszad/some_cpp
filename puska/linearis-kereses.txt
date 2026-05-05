@@ -1,0 +1,39 @@
+05
+
+Lineáris keresés - árak
+Keresés, ha lehet hogy nincs benne
+
+Alap
+
+Adott egy vektor termékek áraival:
+{299,1499, 750, 89, 2999, 450, 1499}
+
+Írj függvényt lin_keres(vector v, int ker) névvel, amely visszaadja az elem ELSŐ előfordulásának indexét,
+vagy -1-et ha nincs benne!
+Teszteld: keresd a 750-et és a 100-at!
+
+Tipp (tétel)
+Lineáris keresés: for ciklus indexszel, if egyenlő > return i. Ciklus után return -1.
+
+==========MEGOLDAS-05==========
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int lin_keres(vector<int> v, int ker){
+    int a = -1;
+    for(int i = 0; i < v.size()-1; i++){
+        if(v[i] == ker){
+            a = i;
+        }
+    }
+    return a;
+}
+
+int main(){
+    vector<int> v = {299,1499, 750, 89, 2999, 450, 1499};
+    int a = lin_keres(v, 750);
+    cout << a;
+}

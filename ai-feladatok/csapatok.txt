@@ -1,0 +1,4 @@
+Piros 15 8 3
+Kek 9 12 5
+Zold 20 5 1
+Sarga 11 10 4

@@ -1,0 +1,54 @@
+17
+
+
+Rekurzió - hatványozás
+
+Rekurzív függvény írása
+
+
+Közepes
+
+
+Írj rekurzív függvényt hatvany(int alap, int kitevo) névvel, amely kiszámítja az alap kitevo-adik
+
+hatványát!
+
+(Tehát: hatvany(2, 10) = 1024)
+
+
+Feltételek:
+
+- NEM használhatsz pow()-t!
+
+- A kitevo mindig nemnegatív egész!
+
+- Írd le a rekurzív összefüggést kommentként!
+
+Teszteld: 2^10, 3^4, 5^0
+
+
+Tipp (tétel)
+
+Báziseset: kitevo == 0 > return 1. Rekurzív eset: return alap * hatvany(alap, kitevo-1).
+
+==========================
+
+#include <iostream>
+using namespace std;
+
+// Rekurzív összefüggés:
+// hatvany(alap, 0)      = 1
+// hatvany(alap, kitevo) = alap * hatvany(alap, kitevo - 1)
+
+int hatvany(int alap, int kitevo) {
+    if (kitevo == 0) return 1;                        // báziseset
+    return alap * hatvany(alap, kitevo - 1);          // rekurzív eset
+}
+
+int main() {
+    cout << "2^10 = " << hatvany(2, 10) << endl;
+    cout << "3^4  = " << hatvany(3, 4)  << endl;
+    cout << "5^0  = " << hatvany(5, 0)  << endl;
+
+    return 0;
+}

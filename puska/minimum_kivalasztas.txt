@@ -1,0 +1,57 @@
+12
+
+
+Minimum kiválasztás - raktárkészlet
+
+Legkisebb elem és indexe
+
+
+Alap
+
+
+Adott egy vektor termékek raktárkészletével (darabszám):
+
+{150, 23, 87, 5, 210, 44, 8}
+
+
+Írj függvényt legsurgosebb(vector v) névvel, amely visszaadja a legkisebb készletű termék értékét és
+
+indexét!
+
+Írd ki: "Legsürgősebb feltöltés: [készlet] db (index: [i])"
+
+
+Tipp (tétel)
+
+Minimum: ugyanaz mint maximum, csak a feltétel fordított: v[i] < min.
+
+===============================
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+pair<int, int> legsurgosebb(vector<int> v) {
+    int min_keszlet = v[0];
+    int min_idx = 0;
+
+    for (int i = 1; i < v.size(); i++) {
+        if (v[i] < min_keszlet) {
+            min_keszlet = v[i];
+            min_idx = i;
+        }
+    }
+
+    return {min_keszlet, min_idx};
+}
+
+int main() {
+    vector<int> keszlet = {150, 23, 87, 5, 210, 44, 8};
+
+    pair<int, int> eredmeny = legsurgosebb(keszlet);
+
+    cout << "Legsürgősebb feltöltés: " << eredmeny.first 
+         << " db (index: " << eredmeny.second << ")" << endl;
+
+    return 0;
+}

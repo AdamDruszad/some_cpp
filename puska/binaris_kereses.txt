@@ -1,0 +1,71 @@
+15
+
+
+Bináris keresés - szótár
+
+Keresés rendezett tömbben
+
+
+Közepes
+
+
+Adott egy rendezett vektor egész számokkal (pl. szótár oldalszámai):
+
+{12, 25, 38, 47, 56, 63, 71, 89, 94, 107}
+
+
+Írj függvényt bin_keres(vector v, int ker) névvel, amely bináris kereséssel megkeresi az elemet és
+
+visszaadja indexét (vagy -1-et)!
+
+Teszteld: keresd a 63-at és a 50-et! Írj kommentet, hogy mikor melyik felet dobja el!
+
+
+Tipp (tétel)
+
+Bináris: elso=0, utolso=n-1. Amíg elso <= utolso: kozep=(e+u)/2. Ha v[kozep] == ker > return. Ha ker
+
+=========================
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int bin_keres(vector<int> v, int ker) {
+    int elso = 0;
+    int utolso = v.size() - 1;
+
+    while (elso <= utolso) {
+        int kozep = (elso + utolso) / 2;
+
+        if (v[kozep] == ker) {
+            return kozep;                  // megtaláltuk
+        } else if (ker < v[kozep]) {
+            utolso = kozep - 1;            // bal felet tartjuk, jobb felet dobjuk el
+        } else {
+            elso = kozep + 1;              // jobb felet tartjuk, bal felet dobjuk el
+        }
+    }
+
+    return -1; // nem található
+}
+
+int main() {
+    vector<int> szótar = {12, 25, 38, 47, 56, 63, 71, 89, 94, 107};
+
+    int ker1 = 63;
+    int eredmeny1 = bin_keres(szótar, ker1);
+    if (eredmeny1 != -1)
+        cout << ker1 << " megtalálva, index: " << eredmeny1 << endl;
+    else
+        cout << ker1 << " nem található" << endl;
+
+    int ker2 = 50;
+    int eredmeny2 = bin_keres(szótar, ker2);
+    if (eredmeny2 != -1)
+        cout << ker2 << " megtalálva, index: " << eredmeny2 << endl;
+    else
+        cout << ker2 << " nem található" << endl;
+
+    return 0;
+}

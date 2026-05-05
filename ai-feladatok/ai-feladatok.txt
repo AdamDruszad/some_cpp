@@ -1,0 +1,155 @@
+=============1=============
+
+1. Írjon függvényt, amelynek két egész szám paramétere van (a, b). 
+A függvény adja vissza a két szám LNKO-ját (legnagyobb közös osztó) rekurzívan, 
+Euklidesz-algoritmussal. Hívja meg lnko(48, 18) értékekkel és írja ki az eredményt.
+
+2. Írjon függvényt, amelynek egy 5x5-ös egész tömb a paramétere, 
+visszatérési értéke vector<float>. A függvény számolja ki az oszlopok átlagát (ne a sorokét!) 
+és adja vissza egy vektorban. Írja ki a vektort.
+
+3. Hozzon létre egy Diak nevű struktúrát, amelynek tagjai: 
+nev (string), neptun (string), atlag (float). 
+Olvasson be egy diakok.txt fájlból diákadatokat (soronként: név neptun átlag), 
+tárolja el egy vektorban. Írja ki azokat a diákokat, akiknek átlaga nagyobb mint 3.5.
+
+A diakok.txt tartalma:
+Kiss_Peter ABC123 4.2
+Nagy_Anna XYZ789 2.8
+Kovacs_Bela DEF456 3.7
+Toth_Eva GHI012 1.9
+
+4. Írjon osztályt Teglalap névvel, amelynek van szelesseg és magassag tagja, 
+konstruktora, és egy terulet() nevű metódusa amely visszaadja a területet. 
+Definiálja felül a << operátort, hogy cout << t formában ki lehessen írni: 
+"Szélesség: X, Magasság: Y, Terület: Z". Hozzon létre 3 téglalapot és írja ki őket.
+
+5. Olvassa be a szavak.txt fájlt, amely soronként egy szót tartalmaz.
+Döntse el minden szóról hogy palindróm-e (visszafelé olvasva ugyanaz). 
+Az eredményt írja a palindromok.txt fájlba: soronként "szo: IGEN" vagy "szo: NEM" formában.
+A szavak.txt tartalma:
+radar
+hello
+korок
+level
+vilag
+
+=============2=============
+
+1. Írjon rekurzív függvényt az LKKT kiszámítására (legkisebb közös többszörös). 
+Segítség: lkkt(a,b) = (a*b) / lnko(a,b). Hívja meg lkkt(12, 18)-cal.
+
+2. Írjon függvényt amely egy vector<int>-et kap paraméterként és visszaadja a mediánt. 
+(Rendezés után a középső elem, páros elemszámnál a két középső átlaga.) 
+Tesztelje: {3, 1, 4, 1, 5, 9, 2, 6}.
+            1, 1, 2, 3, 4, 5, 6, 9
+
+3. Olvassa be az alábbi csapatok.txt fájlt egy struktúra-vektorba. 
+Írja ki azokat a csapatokat amelyek több mint 10 pontot szereztek, névsor szerint rendezve.
+Piros 15 8 3
+Kek 9 12 5
+Zold 20 5 1
+Sarga 11 10 4
+(oszlopok: csapatnév, győzelmek, vereségek, döntetlenek — pont = győzelem×3 + döntetlen×1)
+
+4. Írjon programot amely beolvas egy szöveget (mondat.txt), 
+és egy map<string,int>-ben megszámolja hogy melyik szó hányszor szerepel. 
+Írja ki csökkenő gyakorisági sorrendben.
+alma korte alma barack alma korte
+
+5. Adott az alábbi kód. Mi lesz a kimenet? Magyarázd el soronként.
+vector<int> v = {5, 3, 8, 1, 9, 2};
+int max = v[0], maxind = 0;
+int osszeg = 0;
+int db = 0;
+
+for(int i = 0; i < v.size(); i++){
+    if(v[i] > max){ max = v[i]; maxind = i; }
+    osszeg += v[i];
+    if(v[i] % 2 == 0) db++;
+}
+cout << max << " " << maxind << endl;
+cout << osszeg / (float)v.size() << endl;
+cout << db << endl;
+
+=============3=============
+
+1. Írjon függvényt amely két egész számot kap paraméterként 
+és rekurzívan visszaadja az LKKT-t. Írja ki lkkt(4, 6) és lkkt(15, 25) eredményét.
+
+2. Írjon függvényt amely egy 5x5-ös egész tömböt kap, 
+és visszaadja vector<int>-ben a főátló elemeit (bal felső saroktól jobb alsóig). 
+Írja ki a vektort és az elemek összegét.
+
+3. Hozzon létre egy Termek struktúrát amelynek tagjai: 
+nev (string), ar (int), darab (int). Olvassa be a termekek.txt fájlt:
+Alma 200 50
+Korte 350 20
+Szilva 180 80
+Barack 400 15
+Tárolja vektorban. Írja ki azokat a termékeket amelyekből a készlet értéke 
+(ar * darab) meghaladja a 10000-et. Rendezze őket ár szerint növekvő sorrendben.
+
+4. Hozzon létre egy Alakzat absztrakt osztályt amelynek van:
+
+szin (string) tagváltozója és konstruktora
+virtual double terulet() = 0
+virtual void info() amely kiírja: "Szín: X, Terület: Y"
+
+Örököltessen belőle Kor és Teglalap osztályokat. A Kor-nek sugár, a 
+Téglalapnak szelesseg és magassag tagja legyen. Hozzon létre mindkettőből 
+egy-egy objektumot pointerrel és hívja meg az info()-t.
+
+5. Olvassa be a szoveg.txt fájlt:
+the quick brown fox jumps over the lazy dog the fox
+Egy map-ban számolja meg a szavakat. Írja ki:
+
+hány különböző szó van
+melyik szó szerepel a legtöbbször és hányszor
+az összes szó átlagos hossza
+
+=============4=============
+
+1. Írjon függvényt amely megkapja a dolgozok.txt fájl nevét és visszaad egy vektort. 
+A fájl soronként tartalmaz egy nevet, egy részleget és egy fizetést. 
+Döntse el minden dolgozóról hogy átlag feletti-e a fizetése. 
+Az eredményt írja a premium.txt-be: soronként "nev: IGEN" vagy "nev: NEM".
+Kiss_Peter Fejlesztes 450000
+Nagy_Anna Marketing 280000
+Kovacs_Bela Fejlesztes 520000
+Toth_Eva HR 310000
+Varga_Andras Marketing 390000
+
+2. Adott egy egész számokat tartalmazó vektor. 
+Írjon függvényeket amely ugyanarra a vektorra elvégzi:
+
+megszámlálás: hány páros szám van
+kiválogatás: adja vissza egy új vektorban a 10-nél nagyobb elemeket
+szétválogatás: válassza szét pozitív és negatív számokra
+
+Tesztvéktor: {-5, 12, 3, -8, 17, 4, -1, 22, 9, -14}
+
+3. Hozzon létre egy Jarmu absztrakt osztályt amelynek van rendszam és gyartasiEv tagja. 
+Legyen virtual int kor() függvénye amely visszaadja a jármű korát (2025 - gyártási év). 
+Legyen virtual string tipus()= 0 függvénye. Örököltessen belőle Szemelyauto és 
+Tehergepkocsi osztályokat — mindkettőnek legyen plusz egy saját tagja. 
+Töltsön fel egy vector<Jarmu*>-t vegyes objektumokkal és írja ki mindegyik rendszámát, 
+típusát és korát.
+
+4. Olvassa be a szamok.txt fájlt soronként egy 2D vektorba
+(minden sor egy sor a vektorban, soronként 4 szám van). Végezze el:
+
+minden sor minimumát írja ki
+az oszlopok összegét írja ki
+döntse el létezik-e 37-nél nagyobb elem (eldöntés tétel) — 
+írja ki: "Van ilyen" vagy "Nincs ilyen"
+
+12 45 7 33
+28 9 41 16
+5 37 22 48
+31 14 38 6
+
+5. Kérjen be a felhasználótól n darab egész számot. 
+Rendezze őket buborékrendezéssel (ne használjon sort-ot). 
+Majd végezzen bináris keresést egy bekért értékre a rendezett 
+tömbben — írja ki hogy megtalálta-e és ha igen, melyik indexen.

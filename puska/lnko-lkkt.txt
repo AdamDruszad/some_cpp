@@ -1,0 +1,56 @@
+19
+
+
+LNKO es LKKT
+
+Rekurzív euklideszi algoritmus
+
+
+Közepes
+
+
+Írj rekurzív függvényt Inko(int a, int b) névvel (Euklideszi algoritmus)!
+
+Majd írj Ikkt(int a, int b) névvel egy másik függvényt, amely a Inko segítségével kiszámítja a két
+
+szám legkisebb közös többszörösét!
+
+
+Teszteld:
+
+- Inko(48, 18) = ?
+
+- lkkt(12, 18) = ?
+
+- lkkt(7, 13) = ?
+
+
+Tipp (tétel)
+
+LNKO: ha b == 0> return a. Különben: return Inko(b, a%b). LKKT: (a*b)/Inko(a,b).
+
+=======================
+
+#include <iostream>
+using namespace std;
+
+// Rekurzív összefüggés:
+// lnko(a, 0) = a
+// lnko(a, b) = lnko(b, a % b)
+
+int lnko(int a, int b) {
+    if (b == 0) return a;           // báziseset
+    return lnko(b, a % b);          // rekurzív eset
+}
+
+int lkkt(int a, int b) {
+    return (a * b) / lnko(a, b);
+}
+
+int main() {
+    cout << "lnko(48, 18) = " << lnko(48, 18) << endl;
+    cout << "lkkt(12, 18) = " << lkkt(12, 18) << endl;
+    cout << "lkkt(7, 13)  = " << lkkt(7, 13)  << endl;
+
+    return 0;
+}

@@ -1,0 +1,109 @@
+24
+
+
+Struct + fájlbeolvasás
+
+Struktúra feltöltése fájlból
+
+
+Fájl
+
+
+Hozz létre egy "hallgatok.txt" fájlt a következő tartalommal:
+
+Anna 22 85
+
+Béla 21 72
+
+Csaba 23 91
+
+
+Dóra 22 68
+
+
+Erik 24 55
+
+
+Minden sor: nev kor pontszam
+
+
+Definiálj Hallgato structot (nev: string, kor: int, pont: int)!
+
+Írj beolvas(string fajlnev) függvényt, amely feltölti a vektort!
+
+Majd írd ki: ki felelt meg (pont >= 60), ki a legjobb, és mi az átlagpontszám!
+
+
+Tipp (tétel)
+
+ifstream f(fajlnev); string sor; while(getline(f,sor)){ stringstream ss(sor);
+
+ss>>h.nev>>h.kor>>h.pont;}
+
+==========================
+
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct Hallgato {
+    string nev;
+    int kor;
+    int pont;
+};
+
+vector<Hallgato> beolvas(string fajlnev) {
+    vector<Hallgato> hallgatok;
+    ifstream f(fajlnev);
+    string sor;
+
+    while (getline(f, sor)) {
+        if (sor.empty()) continue;         // üres sorokat kihagyjuk
+        stringstream ss(sor);
+        Hallgato h;
+        ss >> h.nev >> h.kor >> h.pont;
+        hallgatok.push_back(h);
+    }
+    return hallgatok;
+}
+
+int main() {
+    // Fájl létrehozása
+    ofstream keszit("hallgatok.txt");
+    keszit << "Anna 22 85\n";
+    keszit << "Bela 21 72\n";
+    keszit << "Csaba 23 91\n";
+    keszit << "\n";
+    keszit << "Dora 22 68\n";
+    keszit << "\n";
+    keszit << "Erik 24 55\n";
+    keszit.close();
+
+    vector<Hallgato> hallgatok = beolvas("hallgatok.txt");
+
+    // 1. Kik feleltek meg?
+    cout << "=== Megfeleltek (pont >= 60) ===" << endl;
+    for (Hallgato h : hallgatok) {
+        if (h.pont >= 60)
+            cout << h.nev << " (" << h.pont << " pont)" << endl;
+    }
+
+    // 2. Legjobb hallgató
+    Hallgato legjobb = hallgatok[0];
+    for (Hallgato h : hallgatok) {
+        if (h.pont > legjobb.pont) legjobb = h;
+    }
+    cout << endl << "=== Legjobb hallgató ===" << endl;
+    cout << legjobb.nev << " (" << legjobb.pont << " pont)" << endl;
+
+    // 3. Átlagpontszám
+    double osszeg = 0;
+    for (Hallgato h : hallgatok) osszeg += h.pont;
+    cout << endl << "=== Átlagpontszám ===" << endl;
+    cout << osszeg / hallgatok.size() << " pont" << endl;
+
+    return 0;
+}

@@ -1,0 +1,96 @@
+28
+
+
+Szóhossz elemzés - beolvasás
+
+cin beolvasás, szövegstatisztika
+
+
+Közepes
+
+
+Írj programot, amely:
+
+1. Bekér n darab szót a billentyűzetről (n-t is bekéri!)
+
+2. Kiírja a leghosszabb és legrövidebb szót
+
+3. Kiírja az átlagos szóhosszt
+
+4. Kiírja azokat a szavakat, amelyek hossza meghaladja az átlagot
+
+5. Rendezi a szavakat hossz szerint (rövidebbtől hosszabbig) és kiírja
+
+
+Teszteld legalább 6 szóval!
+
+
+Tipp (tétel)
+
+vector szavak; for(int i=0;i>s; szavak.push_back(s);} Sort: sort(v.begin(),v.end(),[](s a, s b){return
+
+a.size() 
+
+==========================
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Hány szót adsz meg? ";
+    cin >> n;
+
+    vector<string> szavak;
+    for (int i = 0; i < n; i++) {
+        string s;
+        cout << i+1 << ". szó: ";
+        cin >> s;
+        szavak.push_back(s);
+    }
+
+    // 1. Leghosszabb és legrövidebb
+    string leghosszabb = szavak[0];
+    string legroviebb  = szavak[0];
+    double ossz_hossz  = 0;
+
+    for (string s : szavak) {
+        ossz_hossz += s.size();
+        if (s.size() > leghosszabb.size()) leghosszabb = s;
+        if (s.size() < legroviebb.size())  legroviebb  = s;
+    }
+
+    double atlag = ossz_hossz / n;
+
+    cout << endl;
+    cout << "=== Leghosszabb szó ===" << endl;
+    cout << leghosszabb << " (" << leghosszabb.size() << " karakter)" << endl;
+
+    cout << endl << "=== Legrövidebb szó ===" << endl;
+    cout << legroviebb << " (" << legroviebb.size() << " karakter)" << endl;
+
+    // 2. Átlagos szóhossz
+    cout << endl << "=== Átlagos szóhossz ===" << endl;
+    cout << atlag << " karakter" << endl;
+
+    // 3. Átlag feletti szavak
+    cout << endl << "=== Átlagnál hosszabb szavak ===" << endl;
+    for (string s : szavak) {
+        if (s.size() > atlag) cout << s << " (" << s.size() << ")" << endl;
+    }
+
+    // 4. Rendezés hossz szerint
+    sort(szavak.begin(), szavak.end(), [](string a, string b) {
+        return a.size() < b.size();
+    });
+
+    cout << endl << "=== Szavak hossz szerint ===" << endl;
+    for (string s : szavak) {
+        cout << s << " (" << s.size() << ")" << endl;
+    }
+
+    return 0;
+}

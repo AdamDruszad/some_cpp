@@ -1,0 +1,113 @@
+27
+
+
+OOP - Jármű öröklés
+
+Osztályok, öröklés, virtuális függvény
+
+
+Hozz létre egy Jarmu alaposztályt a következő tulajdonságokkal:
+
+- rendszam (string), sebesseg (int) tagváltozók
+
+- konstruktor
+
+- virtual double uzemanyag_koltseg() = 0 (tisztán virtuális)
+
+- virtual void info() - kiírja a rendszámot és sebességet
+
+
+Hozz létre két leszármazottat:
+
+- Auto(rendszam, sebesseg, fogyasztas_per_100km) > uzemanyag_koltseg = fogyasztas * 500
+
+(Ft/liter)
+
+- Motor(rendszam, sebesseg, fogyasztas_per_100km) > uzemanyag_koltseg = fogyasztas * 500 *
+
+0.8 (olcsóbb)
+
+
+Hozz létre 3 járművet (auto pointer), tárold vektorban, hívd meg az info()-t mindegyikre!
+
+
+Tipp (tétel)
+
+class Auto : public Jarmu { public: Auto(s,seb,f):Jarmu(s,seb),fogyasztas(f)f double
+
+uzemanyag_koltseg() override { ... } };
+
+==========================
+
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Jarmu {
+protected:
+    string rendszam;
+    int sebesseg;
+
+public:
+    Jarmu(string r, int s) : rendszam(r), sebesseg(s) {}
+
+    virtual double uzemanyag_koltseg() = 0;  // tisztán virtuális
+
+    virtual void info() {
+        cout << "Rendszám: " << rendszam
+             << ", Sebesség: " << sebesseg << " km/h";
+    }
+
+    virtual ~Jarmu() {}
+};
+
+class Auto : public Jarmu {
+    double fogyasztas;
+public:
+    Auto(string r, int s, double f) : Jarmu(r, s), fogyasztas(f) {}
+
+    double uzemanyag_koltseg() override {
+        return fogyasztas * 500;
+    }
+
+    void info() override {
+        Jarmu::info();
+        cout << ", Típus: Autó"
+             << ", Üzemanyagköltség/100km: " << uzemanyag_koltseg() << " Ft" << endl;
+    }
+};
+
+class Motor : public Jarmu {
+    double fogyasztas;
+public:
+    Motor(string r, int s, double f) : Jarmu(r, s), fogyasztas(f) {}
+
+    double uzemanyag_koltseg() override {
+        return fogyasztas * 500 * 0.8;
+    }
+
+    void info() override {
+        Jarmu::info();
+        cout << ", Típus: Motor"
+             << ", Üzemanyagköltség/100km: " << uzemanyag_koltseg() << " Ft" << endl;
+    }
+};
+
+int main() {
+    vector<Jarmu*> jarmuvek;
+
+    jarmuvek.push_back(new Auto("ABC-123", 130, 6.5));
+    jarmuvek.push_back(new Auto("XYZ-789", 110, 8.0));
+    jarmuvek.push_back(new Motor("MOT-456", 150, 4.5));
+
+    cout << "=== Járművek ===" << endl;
+    for (Jarmu* j : jarmuvek) {
+        j->info();
+    }
+
+    // Memória felszabadítás
+    for (Jarmu* j : jarmuvek) delete j;
+
+    return 0;
+}

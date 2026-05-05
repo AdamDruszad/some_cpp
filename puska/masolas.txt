@@ -1,0 +1,43 @@
+06
+
+Másolás - Celsius > Kelvin
+Elemek másolása átalakítással
+
+Alap
+
+Adott egy vektor Celsius fokokban:
+
+
+Írj függvényt celsius_kelvin(vector v) névvel, amely visszaad egy új vektort, ahol minden elem Kelvinbe
+van átszámítva! (Kelvin = Celsius + 273.15)
+Írasd ki mindkét vektort egymás mellé!
+
+Tipp (tétel)
+Másolás tétel: for ciklus, minden elemre: b.push_back(a[i] +273.15)
+
+==========MEGOLDAS-06==========
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<double> celsius_kelvin(vector<double> v){
+    vector<double> uj;
+    for(double x : v){
+        uj.push_back(x + 273.15);
+    }
+    return uj;
+}
+
+int main(){
+    vector<double> v = {0.0, 20.5, -10.0, 37.0, 100.0};
+    for(auto x : v){
+        cout << x << " ";
+    }
+    cout << endl;
+    vector<double> k = celsius_kelvin(v);
+    for(auto x : k){
+        cout << x << " ";
+    }
+}

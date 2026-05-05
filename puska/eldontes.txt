@@ -1,0 +1,40 @@
+03
+
+Eldöntés - tantárgyak
+Van-e az adathalmazban ilyen elem
+
+Adott egy string vektor diákok jegyeivel (tantárgy neve):
+{"Matek", "Fizika", "Torma", "Kémia", "Biológia", "Torma"}
+
+Írj függvényt van_ketjegy(vector v, string ker) névvel, amely visszaadja, hogy szerepel-e a keresett
+tantárgy a listában!
+Teszteld: keresd a "Torma" és a "Zene" tantárgyakat, írd ki az eredményt!
+
+Tipp (tétel)
+Eldöntés tétel: igaz/hamis visszatérés. Ha megvan, azonnal return true, végén return false.
+==========MEGOLDAS-03==========
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+void van_ketjegy(vector<string> v, string ket){
+    int db = 0;
+    for(string x : v){
+        if(ket == x){
+            db += 1;
+        }
+    }
+    string szo;
+    if(db>=2){
+        cout << "Igen";
+    }else{
+        cout << "Nem";
+    }
+}
+
+int main(){
+    vector<string> v = {"Matek", "Fizika", "Torma", "Kémia", "Biológia", "Torma"};
+    van_ketjegy(v, "Matek");
+}

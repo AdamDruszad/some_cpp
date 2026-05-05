@@ -1,0 +1,36 @@
+02
+
+Megszámlálás - hőmérséklet
+Feltételnek megfelelő elemek megszámlálása
+
+Adott egy vektor, amely egy hét napi hőmérsékletét tartalmazza (℃):
+{-3,5,-1, 8, 12,-5, 2}
+
+Írj függvényt fagypont_napok(vector v) névvel, amely megszámolja hány napon volt fagypont alatt a
+hőmérséklet (értéke < 0)!
+
+Tipp (tétel)
+Megszámlálás tétel: számlálót indul 0-ból, minden igaz feltételű elemnél növeli.
+
+==========MEGOLDAS-02==========
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int fagypont_napok(vector<int> v){
+    int napok = 0;
+    for(int x : v){
+        if(x < 0){
+            napok += 1;
+        }
+    }
+    return napok;
+}
+
+int main(){
+    vector<int> v = {-3,5,-1, 8, 12,-5, 2};
+    int a = fagypont_napok(v);
+    cout << a;
+}

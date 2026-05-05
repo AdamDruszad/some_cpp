@@ -1,0 +1,61 @@
+20
+
+
+Prímszám - szita
+
+Prímek felsorolása és ellenőrzés
+
+
+Közepes
+
+
+Írj függvényt prim_e(int n) névvel, amely eldönti egy számról hogy prím-e!
+
+Majd írj primek_ig(int határ) függvényt, amely kilistázza az összes prímszámot 2-től a határig!
+
+
+Teszteld:
+
+- prim_e(17), prim_e(1), prim_e(49)
+
+-primek_ig(50)
+
+
+Figyelj: 1 NEM prím! Hatékonyság: csak sqrt(n)-ig kell ellenőrizni!
+
+
+Tipp (tétel)
+
+Prím: ha n <= 1> false. for i=2; i <= sqrt(n); i++: ha n%i == 0 > false. return true.
+
+====================
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+bool prim_e(int n) {
+    if (n <= 1) return false;                    // 1 és alatta nem prím
+    for (int i = 2; i <= sqrt(n); i++) {
+        if (n % i == 0) return false;            // van osztója → nem prím
+    }
+    return true;
+}
+
+void primek_ig(int hatar) {
+    cout << "Prímek 2-től " << hatar << "-ig: ";
+    for (int i = 2; i <= hatar; i++) {
+        if (prim_e(i)) cout << i << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    cout << "prim_e(17) = " << (prim_e(17) ? "igen" : "nem") << endl;
+    cout << "prim_e(1)  = " << (prim_e(1)  ? "igen" : "nem") << endl;
+    cout << "prim_e(49) = " << (prim_e(49) ? "igen" : "nem") << endl;
+    cout << endl;
+    primek_ig(50);
+
+    return 0;
+}

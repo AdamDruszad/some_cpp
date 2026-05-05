@@ -1,0 +1,38 @@
+04
+
+Kiválasztás - verseny
+Elem pozíciójának megkeresése (garantált bennelét)
+
+Adott egy vektor versenyzők pontszámával:
+{45, 78, 92, 61, 88, 73, 92}
+
+Írj függvényt hanyadik(vector v, int ker) névvel, amely visszaadja, hogy a keresett pontszám ELŐSZÖR
+melyik indexen szerepel! (Feltételezzük, hogy biztosan benne van.)
+Keresd a 92-es értéket!
+
+Tipp (tétel)
+Kiválasztás tétel: while ciklus amíg nem egyenlő, i++. Nem ellenőrizzük a tömb végét.
+
+==========MEGOLDAS-04==========
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int hanyadik(vector<int> v, int kert){
+    int k;
+    for(int i = 0; i < v.size()-1; i++){
+        if(v[i]==kert){
+            k = i;
+        }
+    }
+    return k;
+
+}
+
+int main(){
+    vector<int> v = {45, 78, 92, 61, 88, 73, 92};
+    int a = hanyadik(v, 92);
+    cout << a;
+}

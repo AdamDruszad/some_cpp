@@ -1,0 +1,68 @@
+21
+
+
+Palindróm - szöveg
+
+String palindróm ellenőrzés
+
+
+Alap
+
+
+Írj függvényt palindrom(string s) névvel, amely eldönti egy szövegről hogy palindróm-e (előre és
+
+visszafelé olvasva ugyanaz)!
+
+
+Teszteld: "radar", "level", "hello", "abba", "racecar"
+
+
+Bónusz: írj egy verziót, amely nagybetű/kisbetű különbséget és szóközöket figyelmen kívül hagy!
+
+(pl. "Race a car" nem palindróm, de "A man a plan a canal Panama" igen, ha kiszeded a szóközöket)
+
+
+Tipp (tétel)
+
+Palindróm: string forditott(s.rbegin(), s.rend()); return s == forditott; VAGY két mutatóval belülről.
+
+=========================
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+// Alap verzió
+bool palindrom(string s) {
+    string forditott(s.rbegin(), s.rend());
+    return s == forditott;
+}
+
+// Bónusz verzió - szóköz és kis/nagybetű figyelmen kívül
+bool palindrom_okos(string s) {
+    // csak betűket tartjuk meg, kisbetűsítve
+    string tiszta = "";
+    for (char c : s) {
+        if (c != ' ') tiszta += tolower(c);
+    }
+    string forditott(tiszta.rbegin(), tiszta.rend());
+    return tiszta == forditott;
+}
+
+int main() {
+    // Alap tesztek
+    cout << "=== Alap verzió ===" << endl;
+    cout << "radar   : " << (palindrom("radar")   ? "igen" : "nem") << endl;
+    cout << "level   : " << (palindrom("level")   ? "igen" : "nem") << endl;
+    cout << "hello   : " << (palindrom("hello")   ? "igen" : "nem") << endl;
+    cout << "abba    : " << (palindrom("abba")    ? "igen" : "nem") << endl;
+    cout << "racecar : " << (palindrom("racecar") ? "igen" : "nem") << endl;
+
+    // Bónusz tesztek
+    cout << endl << "=== Bónusz verzió ===" << endl;
+    cout << "Race a car              : " << (palindrom_okos("Race a car")              ? "igen" : "nem") << endl;
+    cout << "A man a plan a canal Panama : " << (palindrom_okos("A man a plan a canal Panama") ? "igen" : "nem") << endl;
+
+    return 0;
+}

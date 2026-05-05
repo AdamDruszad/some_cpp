@@ -1,0 +1,98 @@
+25
+
+
+Fájlba írás - feldolgozás
+
+Beolvasás és eredmény fájlba
+
+
+Fájl
+
+
+Hozz létre egy "homerseklet.txt" fájlt, ahol minden sor egy nap mért hőmérsékleti értékeit
+
+tartalmazza:
+
+
+-2-1013
+
+58769
+
+
+-3-2-4-1-3
+
+15 18 20 17 16
+
+
+Soronként számold ki az átlaghőmérsékletet, és egy "eredmeny.txt" fájlba írj minden sorhoz:
+
+- az átlaghőmérsékletet 2 tizedesre kerekítve
+
+- hogy volt-e azon a napon fagypont (Igen/Nem)
+
+
+Tipp (tétel)
+
+while(getline(be, sor)){ istringstream iss(sor); while(iss>>szam){ ... } kiFile << fixed <<
+
+setprecision(2) << atlag; }
+
+=============================
+
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+int main() {
+    // Fájl létrehozása
+    ofstream keszit("homerseklet.txt");
+    keszit << "-2 -1 0 1 3\n";
+    keszit << "5 8 7 6 9\n";
+    keszit << "-3 -2 -4 -1 -3\n";
+    keszit << "15 18 20 17 16\n";
+    keszit.close();
+
+    ifstream be("homerseklet.txt");
+    ofstream ki("eredmeny.txt");
+
+    ki << fixed << setprecision(2);
+
+    string sor;
+    int nap = 1;
+
+    while (getline(be, sor)) {
+        if (sor.empty()) continue;
+
+        istringstream iss(sor);
+        double osszeg = 0;
+        int db = 0;
+        bool volt_fagy = false;
+        int szam;
+
+        while (iss >> szam) {
+            osszeg += szam;
+            db++;
+            if (szam < 0) volt_fagy = true;
+        }
+
+        double atlag = osszeg / db;
+
+        cout << "Nap " << nap << ": atlag=" << atlag
+             << "°C, fagy=" << (volt_fagy ? "Igen" : "Nem") << endl;
+
+        ki << "Nap " << nap << ": atlag=" << atlag
+           << "°C, fagy=" << (volt_fagy ? "Igen" : "Nem") << "\n";
+
+        nap++;
+    }
+
+    be.close();
+    ki.close();
+
+    cout << "\nEredmények elmentve: eredmeny.txt" << endl;
+
+    return 0;
+}

@@ -1,0 +1,5 @@
+Kiss_Peter: Igen
+Nagy_Anna: Nem
+Kovacs_Bela: Igen
+Toth_Eva: Nem
+Varga_Andras: Nem

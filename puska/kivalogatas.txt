@@ -1,0 +1,40 @@
+07
+
+Kiválogatás - jeles diákok
+Feltételnek megfelelők új vektorba
+
+Alap
+
+Adott egy vektor diákok jegyeivel (1-5):
+{3,5, 2, 5, 4, 1, 5, 3,5}
+
+Írj függvényt jeles_indexek(vector v) névvel, amely visszaad egy vektort, amely azoknak a diákoknak az
+INDEXÉT tartalmazza, akik jelest (5-öst) kaptak!
+
+Tipp (tétel)
+Kiválogatás tétel: ha a feltétel igaz, push_back az indexszel (i), nem az értékkel.
+
+==========MEGOLDAS-07==========
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<int> jeles_indexek(vector<int> v){
+    vector<int> uj;
+    for(int x = 0; x < v.size()-1; x++){
+        if(v[x]==5){
+            uj.push_back(x);
+        }
+    }
+    return uj;
+}
+
+int main(){
+    vector<int> v = {3,5, 2, 5, 4, 1, 5, 3,5};
+    vector<int> jeles = jeles_indexek(v);
+    for(int i : jeles){
+        cout << i <<" ";
+    }
+}

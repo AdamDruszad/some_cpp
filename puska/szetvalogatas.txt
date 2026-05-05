@@ -1,0 +1,49 @@
+08
+
+Szétválogatás - páros/páratlan
+Két vektorba szétosztás
+
+Alap
+
+Adott egy vektor egész számokkal:
+{7,4, 11, 2, 9, 6, 13, 8, 3}
+
+Írj eljárást szetvalogat(vector v) névvel, amely szétválogatja a számokat páros és páratlan vektorokba,
+majd mindkét vektort kiírja!
+
+Tipp (tétel)
+Szétválogatás: ha x%2 == 0 > páros vektorba push_back, különben páratlan vektorba.
+
+
+==========MEGOLDAS-08==========
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void szetvalogat(vector<int> v){
+    vector<int> paros;
+    vector<int> paratlan;
+    for(int x : v){
+        if(x % 2 == 0){
+            paros.push_back(x);
+        }else{
+            paratlan.push_back(x);
+        }
+    }
+    cout << "Paros: \n";
+    for(int x : paros){
+        cout << x << " ";
+    }
+    cout << endl;
+    cout << "Paratlan: \n";
+    for(int x : paratlan){
+        cout << x << " ";
+    }
+}
+
+int main(){
+    vector<int> v = {7,4, 11, 2, 9, 6, 13, 8, 3};
+    szetvalogat(v);
+}

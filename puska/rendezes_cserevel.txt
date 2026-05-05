@@ -1,0 +1,65 @@
+14
+
+
+Rendezés cserével- ülésrend
+
+Selection sort implementáció
+
+
+Közepes
+
+
+Adott egy vektor magassági adatokkal (cm-ben), amelyek alapján ülésrendet kell kialakítani:
+
+{165, 182, 158, 175, 170, 190, 163}
+
+
+Írj függvényt rendezes_cserevel(vector& v) névvel, amely növekvő sorba rendezi az adatokat cserés
+
+rendezéssel!
+
+
+Tipp (tétel)
+
+Rendezés cserével: külső ciklus i=0 .. n-2, belső j=i+1 .. n-1. Ha v[i]>v[j] > swap.
+
+=======================
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void rendezes_cserevel(vector<int>& v) {
+    int n = v.size();
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (v[i] > v[j]) {
+                int temp = v[i];
+                v[i] = v[j];
+                v[j] = temp;
+            }
+        }
+    }
+}
+
+void kiir(vector<int>& v) {
+    for (int i = 0; i < v.size(); i++) {
+        cout << v[i];
+        if (i < v.size() - 1) cout << ", ";
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<int> magassag = {165, 182, 158, 175, 170, 190, 163};
+
+    cout << "Rendezés előtt: ";
+    kiir(magassag);
+
+    rendezes_cserevel(magassag);
+
+    cout << "Rendezés után:  ";
+    kiir(magassag);
+
+    return 0;
+}

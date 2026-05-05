@@ -1,0 +1,87 @@
+16
+
+
+Összefuttatás - névsorok
+
+Két rendezett vektor összefésülése
+
+
+Nehéz
+
+
+Adott két rendezett vektor (pl. két osztály névsorának betűrendes kódjai):
+
+A = {11, 23, 34, 45, 67}
+
+B = {15, 23, 41, 67, 89, 95}
+
+
+Írj függvényt osszefuttatas(vector a, vector b) névvel, amely rendezetten fésüli össze a két
+
+vektort! (Ha mindkettőben szerepel egy szám, csak egyszer szerepeljen az eredményben!)
+
+
+Tipp (tétel)
+
+Összefuttatás: i=0, j=0 mutatók. Amíg mindkettő él: kisebbet tedd be, azt a mutatót léptesd. Végén
+
+a maradékot told be.
+
+============================
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<int> osszefuttatas(vector<int> a, vector<int> b) {
+    vector<int> eredmeny;
+    int i = 0, j = 0;
+
+    while (i < a.size() && j < b.size()) {
+        if (a[i] < b[j]) {
+            eredmeny.push_back(a[i]);
+            i++;
+        } else if (a[i] > b[j]) {
+            eredmeny.push_back(b[j]);
+            j++;
+        } else {
+            // egyenlők → csak egyszer tesszük be
+            eredmeny.push_back(a[i]);
+            i++;
+            j++;
+        }
+    }
+
+    // A maradék betolása
+    while (i < a.size()) {
+        eredmeny.push_back(a[i]);
+        i++;
+    }
+    while (j < b.size()) {
+        eredmeny.push_back(b[j]);
+        j++;
+    }
+
+    return eredmeny;
+}
+
+void kiir(vector<int>& v) {
+    for (int i = 0; i < v.size(); i++) {
+        cout << v[i];
+        if (i < v.size() - 1) cout << ", ";
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<int> A = {11, 23, 34, 45, 67};
+    vector<int> B = {15, 23, 41, 67, 89, 95};
+
+    cout << "A: "; kiir(A);
+    cout << "B: "; kiir(B);
+
+    vector<int> eredmeny = osszefuttatas(A, B);
+    cout << "Összefésülve: "; kiir(eredmeny);
+
+    return 0;
+}

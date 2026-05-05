@@ -1,0 +1,67 @@
+13
+
+
+Buborékrendezés - jegyek
+
+Saját rendezési implementáció
+
+
+Közepes
+
+
+Adott egy vektor diákok ZH jegyeivel:
+
+{67, 45, 88, 32, 91, 55, 78, 23, 84}
+
+
+Írj függvényt buborek(vector& v) névvel, amely buborékrendezéssel növekvő sorba rendezi a jegyeket
+
+(NEM használhatsz sort()-ot)!
+
+Írasd ki a vektort rendezés előtt és után!
+
+
+Tipp (tétel)
+
+Buborék: külső ciklus 0 .. n-2, belső 0 .. n-2-i. Ha v[j]>v[j+1] > swap.
+
+============================
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void buborek(vector<int>& v) {
+    int n = v.size();
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - 1 - i; j++) {
+            if (v[j] > v[j + 1]) {
+                int temp = v[j];
+                v[j] = v[j + 1];
+                v[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void kiir(vector<int>& v) {
+    for (int i = 0; i < v.size(); i++) {
+        cout << v[i];
+        if (i < v.size() - 1) cout << ", ";
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<int> jegyek = {67, 45, 88, 32, 91, 55, 78, 23, 84};
+
+    cout << "Rendezés előtt: ";
+    kiir(jegyek);
+
+    buborek(jegyek);
+
+    cout << "Rendezés után:  ";
+    kiir(jegyek);
+
+    return 0;
+}

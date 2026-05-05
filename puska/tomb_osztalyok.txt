@@ -1,0 +1,92 @@
+23
+
+
+2D tömb - osztályzatok
+
+Kétdimenziós vektor feldolgozása
+
+
+Közepes
+
+
+Adott egy 2D-s tömb, ahol sorok = diákok, oszlopok = tárgyak jegyei:
+
+{{5, 4, 3,5,4},
+
+{3,2,4,3,5},
+
+{5, 5, 5, 4,5},
+
+{2,3,2,4,3}}
+
+
+Írd ki:
+
+1. Minden diák átlagát (sorátlag)
+
+2. Minden tárgy átlagát (oszlopátlag)
+
+3. A legjobb diák indexét (legmagasabb sorátlag)
+
+4. A főátló elemeit
+
+
+Tipp (tétel)
+
+Sorátlag: belső for j loop, összeadod és osztod oszlopszámmal. Oszlopátlag: külső j, belső i loop.
+
+========================
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<vector<int>> jegyek = {
+        {5, 4, 3, 5, 4},
+        {3, 2, 4, 3, 5},
+        {5, 5, 5, 4, 5},
+        {2, 3, 2, 4, 3}
+    };
+
+    int sorok   = jegyek.size();
+    int oszlopok = jegyek[0].size();
+
+    // 1. Sorátlagok (diákok átlaga)
+    cout << "=== Diákok átlaga ===" << endl;
+    int legjobb_idx = 0;
+    double legjobb_atlag = 0;
+
+    for (int i = 0; i < sorok; i++) {
+        double osszeg = 0;
+        for (int j = 0; j < oszlopok; j++) osszeg += jegyek[i][j];
+        double atlag = osszeg / oszlopok;
+        cout << "Diák " << i+1 << ": " << atlag << endl;
+
+        if (atlag > legjobb_atlag) {
+            legjobb_atlag = atlag;
+            legjobb_idx = i;
+        }
+    }
+
+    // 2. Oszlopátlagok (tárgyak átlaga)
+    cout << endl << "=== Tárgyak átlaga ===" << endl;
+    for (int j = 0; j < oszlopok; j++) {
+        double osszeg = 0;
+        for (int i = 0; i < sorok; i++) osszeg += jegyek[i][j];
+        cout << "Tárgy " << j+1 << ": " << osszeg / sorok << endl;
+    }
+
+    // 3. Legjobb diák
+    cout << endl << "=== Legjobb diák ===" << endl;
+    cout << "Diák " << legjobb_idx+1 << " (átlag: " << legjobb_atlag << ")" << endl;
+
+    // 4. Főátló elemei
+    cout << endl << "=== Főátló elemei ===" << endl;
+    int atlo_meret = min(sorok, oszlopok);
+    for (int i = 0; i < atlo_meret; i++) {
+        cout << "jegyek[" << i << "][" << i << "] = " << jegyek[i][i] << endl;
+    }
+
+    return 0;
+}
