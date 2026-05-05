@@ -1,0 +1,26 @@
+1.
+Írjon függvényt amelynek két paramétere van a 
+visszatérési értéke, pedig a két szám lkkt-je.
+
+2.
+Írjon függvényt amelynek egy 3x3-as tömb kétdimenziós tömb a 
+paramétere és visszaadja a soronkénti maximum és minimum 
+különbségét egy 3 méretű tömbben.
+
+3.
+Írjon függvényt amelynek 3 integer paramétere van(a,b,c). 
+A legkiseb és a legnagyobb értéket írja felül 0-ra, 
+majd cserélje meg az (a) és (c), majd a (b) és (a)
+változók értékét. A függvény visszatérési értéke void. (a<c, b>a). 
+A cserék utáni állapotot a main függvényben írja ki.
+
+4.
+Hozzon létre strukturát Banan néven, amelynek van súlya, 
+minősége("A" vagy "B"), egy bool adattagja, amely jelzi, 
+hogy bio-e. TÖltsön fel egy 5 méretű tömböt
+banánokkal. Rendezze a tömböt súly szerint.
+
+5.
+Olvassa be a sorok.txt állományt egy tetszőleges adatszerkezetbe(vektor). 
+Írja ki a gyakori.txt-be a legritkábban előforduló betűt és számosságát, 
+valamint a nagybetűk számát.
